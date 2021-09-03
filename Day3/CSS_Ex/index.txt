@@ -1,0 +1,113 @@
+<html>
+	<head>
+		<style>
+
+			
+		</style>
+		<link href="style/lifesaver.css" rel="stylesheet" type="text/css">
+	</head>
+	<body style="background-image: url('images/bgimage.jpg')">
+		
+		<div class="box">
+			<div class="box-title">
+				<h3>What is HTML?</h3>
+			</div>
+			<div class="box-content">
+				<p>HTML Stands for Hyper Text Markup Language, it is used to create static
+				web content.</p>
+			</div>
+		</div>
+		<div class="box">
+			<div class="box-title">
+				<h3>What is CSS?</h3>
+			</div>
+			<div class="box-content">
+				<p>CSS stands for Cascading Style Sheet, it is used to format the HTML
+				content.</p>
+			</div>
+		</div>
+		<div class="box">
+			<div class="box-title">
+				<h3>What is JS?</h3>
+			</div>
+			<div class="box-content">
+				<p>JS stands for Java Script, it is the browsers programming language which
+				browser directly understands.</p>
+			</div>
+		</div>
+		
+		<div style="clear:left"></div>
+		
+		<div class="myImg">
+			<img src="https://im.idiva.com/content/2020/Jul/Guess-Indias-North-Eastern-States-Just-By-Their-Famous-Landmarks_1_5f0c234151b94.jpg">
+		</div>
+		<div class="myImg">
+			<img src="https://cdn.getyourguide.com/img/tour/5b714ffb26966.jpeg/146.jpg">
+		</div>
+		<div class="myImg">
+			<img src="https://www.travelanddestinations.com/wp-content/uploads/2020/05/Quiz-Landmarks.jpg">
+		</div>
+		
+		<div style="clear:left"></div>
+		
+		<ul id="courses">
+			<li><a href="https://anubhavtrainings.com/ui5-and-odata-training">SAP UI5</a></li>
+			<li><a href="https://anubhavtrainings.com/analytics-cloud-training">SAP SAC</a></li>
+			<li><a href="https://anubhavtrainings.com/aoh-and-cds-view-training">SAP HANA</a></li>
+			<li><a href="https://anubhavtrainings.com/aoh-and-cds-view-training">ABAP on HANA</a></li>
+		</ul>
+		
+			<div style="clear:left"></div>
+		
+		<table>
+      	<thead>
+      		<tr>
+      			<th>Song Name</th>
+      			<th>Artist</th>
+      			<th>Rock On!!</th>
+      		</tr>
+      	</thead>
+      	<tbody>
+      		<tr>
+      			<td>Tu Bhoola Jise</td>
+      			<td>KK</td>
+      			<td><audio src="" controls></audio></td>
+      		</tr>
+      		<tr>
+      			<td>Maa Tujhe Salam</td>
+      			<td>A.R. Rehman</td>
+      			<td><audio src="" controls></audio></td>
+      		</tr>
+      		<tr>
+      			<td>Beautiful</td>
+      			<td>Ed Sareen</td>
+      			<td><audio src="" controls></audio></td>
+      		</tr>
+      		<tr>
+      			<td>Titenic</td>
+      			<td>Leon</td>
+      			<td><audio src="" controls></audio></td>
+      		</tr>
+      		<tr>
+      			<td>Yo man</td>
+      			<td>Badshah</td>
+      			<td><audio src="" controls></audio></td>
+      		</tr>
+      	</tbody>
+      </table>
+		
+		
+		<ul>
+			<li>Apple</li>
+			<li>Banana</li>
+			<li>Cherry</li>
+		</ul>
+		
+		<h3>Personal details</h3>
+		<label>Name</label>
+		<input>
+		<br>
+		<label>age</label>
+		<input>
+	</body>
+</html>

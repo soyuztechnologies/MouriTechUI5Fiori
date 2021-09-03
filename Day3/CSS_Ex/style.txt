@@ -1,0 +1,68 @@
+	.box{
+		width:150px;
+		border: 1px solid black;
+		float:left;
+		margin: 3px;
+	}
+	.box-title{
+		color:red;
+		text-align:center;
+	}
+	.box-content{
+		background: yellow;
+		color: blue;
+		height: 160px;
+		border: 1px solid black;
+		padding: 4px;
+	}
+	img{
+		width: 150px;
+		height: 150px;
+		opacity: 0.4;
+	}
+	img:HOVER{
+		opacity:1;
+		border: 3px solid red;
+		height: 200px;
+		width: 200px;
+	}
+	.myImg{
+		float: left;
+		margin: 10px;
+	}
+	#courses li{
+		float: left;
+		padding: 5px;
+		border: 1px solid black;
+		list-style: none;
+		background: white;
+		color: lightblue;
+	}
+	#courses li a{
+		text-decoration: none;
+		color: lightblue;
+	}
+	#courses li:HOVER{
+		background: orange;
+		color: white;
+		text-transform:uppercase;
+	}
+	
+	table{
+		border-collapse: collapse;
+	}
+	td,th{
+		border: 1px solid black;
+	}
+	th{
+		background: brown;
+		color: white;
+		font-family: cursive;
+		font-weight: bold;
+	}
+	tr:nth-child(even){
+		background: lime;
+	}
+	tr:nth-child(odd){
+		background: white;
+	}
