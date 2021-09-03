@@ -1,0 +1,18 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.ui.layout.form"
+ xmlns="sap.m" controllerName="mickey.controller.MyXML">
+        
+        <f:SimpleForm>
+            <f:content>
+                <Label text="Emp ID" />
+                <Input id="idEmpID" width="200px" maxLength="5"/>
+                <Label text="Emp Name" />
+                <Input id="idEmpName" width="400px"/>
+                <Label text="Salary" />
+                <Input id="idEmpSal" width="180px"/>
+                <Label text="Currency" />
+                <Input id="idEmpCurr" width="120px"/>
+            </f:content>
+        </f:SimpleForm>
+        
+        <Button id="MyButton" text="Click Me" press="clickMe"/>
+</mvc:View>

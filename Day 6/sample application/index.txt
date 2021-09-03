@@ -1,0 +1,24 @@
+<html>
+    <head>
+
+        <script src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+                data-sap-ui-libs="sap.m">
+            
+        </script>
+
+        <script>
+            var oBtn = new sap.m.Button({
+                text: "welcome",
+		press: function() {
+			alert("This is your first UI5 app")
+		}
+            });
+            oBtn.placeAt("content");
+
+        </script>
+
+    </head>
+    <body>
+        <div id="content"></div>
+    </body>
+</html>
