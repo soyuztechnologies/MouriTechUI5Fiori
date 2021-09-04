@@ -1,0 +1,50 @@
+sap.ui.define([
+    "mickey/controller/BaseController"
+], function(Controller) {
+    'use strict';
+    return Controller.extend("mickey.controller.MyXML",{
+        //Once my Controller object is created then only initialization should happen
+        //onInit - like constructor of the class, which gets called once the object is created
+        onInit: function(){
+            //another way of initializing class level variables
+            //base class method which is of same name
+            Controller.prototype.onInit.apply(this);
+            console.log("Child Class Constructor");
+            //a global variable @ class level which can be used by other methods
+            this.oView = this.getView();
+        },
+        onBeforeRendering: function(){
+            //if(checkings....)
+            this.oView.byId("MyButton").setEnabled(false);
+        },
+        onAfterRendering: function(){
+            //$("#myView--myForm").hide().fadeIn(5000);
+        },
+        //oView : this.getView(),
+        clickMe: function(params) {
+            //sap.ui.getCore()
+            //var oView = this.getView();
+            var oControl = this.oView.byId("MyButton");
+
+            //var oControl = sap.ui.getCore().byId("__xmlview0--MyButton");
+
+            oControl.setVisible(false);
+        },
+        onShow: function(){debugger;
+            //get the view object
+            //var oView = this.getView();
+            //get the control object using the view
+            var oEmpId = this.oView.byId("idEmpID");
+            console.log("Employee ID is : ", oEmpId.getValue());
+
+            var oEmpName = this.oView.byId("idEmpName");
+            console.log("Employee Name is : ", oEmpName.getValue());
+
+            var oSal = this.oView.byId("idEmpSal");
+            console.log("Employee Salary is : ", this.calculateSal(oSal.getValue()));
+
+            //using chaning w/o creating extra variable
+            console.log("Employee Currency is : ", this.oView.byId("idEmpCurr").getValue());
+        }
+    });
+});
