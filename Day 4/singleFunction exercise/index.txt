@@ -1,0 +1,15 @@
+<html>
+
+<head>
+    <link href="style/lifesaver.css" rel="stylesheet" type="text/css">
+    <script src="library/reuse.js">
+    </script>
+    <script src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"></script>
+</head>
+
+<body>
+    <input id="num" type="number">
+    <button onclick="myFirstDemoFunction()">Click Me</button>
+</body>
+
+</html>

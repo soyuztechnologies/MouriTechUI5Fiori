@@ -1,0 +1,135 @@
+function myFirstFunction(){
+	alert('Welcom to internal js');
+}
+function secondFun(){
+	var oInp = document.getElementById("num");
+	var	emp = {"empId0":100};
+	emp.salary = 9000;
+	console.log(emp);
+	var empStr = JSON.stringify(emp);
+	console.log(empStr);
+	empStr = '{"x":10, "y":"abc"}';
+	emp = JSON.parse(empStr);
+	console.log(emp);
+	
+	alert(oInp.value);
+}
+function onLogin(){
+	var oInpUsr = document.getElementById("usr");
+	var valUser = oInpUsr.value;
+	var valPwd =  document.getElementById("pswd").value;
+	if(valUser === "Shekhar" && valPwd === "Vedi"){
+		///Login Success
+		document.write("<h1>Login was Successful!! <em style='color:red'>Roger</em></h1>");
+	}else{
+		///login Failed
+		document.getElementById("msg").innerText = "Your login was abandoned due to wrong CRED";
+		blinkYourEyes();
+	}
+}
+function onMagic(){
+	
+	$(".box-title").css("background-color", "brown").css("color", "white");
+	$("input").css("background-color", "black").css("color", "aqua").css("font-family", "cursive");
+	// var aBoxTitle = document.getElementsByClassName("box-title");
+	// for (var i=0; i<aBoxTitle.length; i++){
+	// 	var oTitleElement = aBoxTitle[i];
+	// 	oTitleElement.style.backgroundColor = "black";			
+	// }
+}
+function loadJson(){
+	return {
+			"empTab": [{
+					"empId": 100,
+					"empName": "Shekahr",
+					"salary": 5000
+				},
+				{
+					"empId": 100,
+					"empName": "Nishan",
+					"salary": 6000
+				},
+				{
+					"empId": 100,
+					"empName": "Shubham",
+					"salary": 6500
+				},
+				{
+					"empId": 100,
+					"empName": "Kuldeep",
+					"salary": 5600
+				}
+			],
+			"empStr": {
+				"empId": 999,
+				"empName": "Shekahr",
+				"salary": 5000
+			}
+		};
+}
+function onJSONLoop(){
+	var sample = loadJson();
+	var aEmpTab = sample.empTab;
+	for(var i=0; i<aEmpTab.length; i++){
+		console.log(aEmpTab[i].empName);
+	}
+}
+function salaryInc(){
+	var sample = loadJson();
+	var aEmpTab = sample.empTab;
+	for(var i=0; i<aEmpTab.length; i++){
+		console.log(aEmpTab[i].empName + '-' + (aEmpTab[i].salary + aEmpTab[i].salary*0.1));
+	}	
+}
+function onDraw(countryVal){debugger;
+		var oNewElement = document.createElement("h4");
+		if(countryVal) {
+			var oText = document.createTextNode(countryVal);
+		}else {
+			oText = document.createTextNode(document.getElementById("got").value);
+		}
+		oNewElement.appendChild(oText);
+		
+		var oCanvas = document.getElementById("canvas");
+		oCanvas.appendChild(oNewElement);
+}
+function enlargeImg(){
+	$("#monalisa").animate({
+		width: "+=5px",
+		height: "+=5px"
+	});
+}
+function onAppear(){
+	$(".box").fadeOut(5000, function(){
+		alert("yes dude, they are all hidden");
+	});
+}
+function onDisappear(){
+	$(".box").fadeIn(5000);
+}
+function blinkYourEyes(){
+	$("#msg").fadeOut(500, function(){
+		$("#msg").fadeIn(500, function(){
+			blinkYourEyes();
+		});
+	});
+}
+function Zumba(){
+	$("input").animate({
+		width: "10px",
+		height: "6px"
+	}, function(){
+		$(this).animate({
+			width: "150px",
+			height: "20px"
+		});
+	});
+}
+function getAllCountries(){
+	$.get("https://api.covid19api.com/countries", function(data){
+			var aCountries = data;
+			for(var i=0;aCountries.length; i++){
+				onDraw(aCountries[i].ISO2 + " - " + aCountries[i].Country);
+			}
+	});
+}

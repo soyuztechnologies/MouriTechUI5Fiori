@@ -1,0 +1,9 @@
+function myFirstDemoFunction() {
+    var oInp = document.getElementById("num");
+    var input1 = parseInt(oInp.value)
+    alert(square(input1));
+}
+
+const square = function(number) {
+    return number * number;
+}
