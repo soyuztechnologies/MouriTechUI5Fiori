@@ -1,0 +1,88 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+        xmlns:f="sap.ui.layout.form" xmlns="sap.m" xmlns:t="sap.ui.table" controllerName="mickey.controller.MyXML">
+        <t:Table rows="{/empTab}" selectionMode="Single" visibleRowCount="3" rowSelectionChange="onRowSelect">
+            <t:columns>
+                <t:Column>
+                    <t:label>
+                        <Text text="Emp Id" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{empId}" />
+                    </t:template>
+                </t:Column>
+                <t:Column>
+                    <t:label>
+                        <Text text="Emp Name" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{empName}" />
+                    </t:template>
+                </t:Column>
+                <t:Column>
+                    <t:label>
+                        <Text text="Salary" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{salary} {currency}" />
+                    </t:template>
+                </t:Column>
+                <t:Column>
+                    <t:label>
+                        <Text text="Smoker" />
+                    </t:label>
+                    <t:template>
+                        <CheckBox selected="{smoker}" ></CheckBox>
+                    </t:template>
+                </t:Column>
+                <t:Column>
+                    <t:label>
+                        <Text text="Gender" />
+                    </t:label>
+                    <t:template>
+                        <Image src="{picUrl}" width="30px" height="30px"></Image>
+                    </t:template>
+                </t:Column>
+                <t:Column>
+                    <t:label>
+                        <Text text="Marital Status" />
+                    </t:label>
+                    <t:template>
+                        <Select selectedKey="{mStat}">
+                            <items>
+                                <core:Item text="Married" key="M" />
+                                <core:Item text="Single" key="S" />
+                            </items>
+                        </Select>
+                    </t:template>
+                </t:Column>
+                <t:Column>
+                    <t:label>
+                        <Text text="Rating" />
+                    </t:label>
+                    <t:template>
+                        <RatingIndicator value="{rating}"></RatingIndicator>
+                    </t:template>
+                </t:Column>
+            </t:columns>
+        </t:Table>
+
+        <f:SimpleForm editable="true" id="myForm">
+            <f:content>
+                <Label text="Emp ID"/>
+                <Input id="idEmpID" value="{/empStr/empId}" enabled="{/empStr/mario}" width="200px" maxLength="5"/>
+                <Label text="Emp Name"/>
+                <Input id="idEmpName" value="{/empStr/empName}" enabled="{/empStr/mario}" width="400px"/>
+                <Label text="Salary"/>
+                <Input id="idEmpSal" value="{/empStr/salary}" 
+                       enabled="{= ${/empStr/empName} === 'Anubhav' ? false : true }" width="180px"/>
+                <Label text="Currency"/>
+                <Input id="idEmpCurr" value="{/empStr/currency}" enabled="{/empStr/mario}" width="120px"/>
+            </f:content>
+        </f:SimpleForm>
+        
+        <Button text="Show Data" id="idShow" press="onShow"/>
+        <Button id="MyButton" text="Click Me" press="clickMe"/>
+        <Button id="grayOut" text="Magic in the Air!" press="onMagic" />
+        <Button id="idFlip" text="Flip Model" press="onFlip" />
+        
+</mvc:View>
