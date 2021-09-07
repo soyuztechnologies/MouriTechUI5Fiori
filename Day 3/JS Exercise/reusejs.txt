@@ -1,4 +1,4 @@
-function myFirstDemoFunction(){
+function myFirstDemoFunction() {
 	alert('welcome to inline js');
 }
 function mySecondFunction(){
@@ -15,7 +15,7 @@ function mySecondFunction(){
 	
 	alert(oInp.value);
 }
-function onLogin(){
+function onLogin() {
 	var oInpUsr = document.getElementById("usr");
 	var valUser = oInpUsr.value;
 	var valPwd = document.getElementById("pwd").value; //chaining example
@@ -23,8 +23,8 @@ function onLogin(){
 		///Login successs
 		//debugger;
 		document.write("<h1>Login was a Success!! <em style='color:red'>Roger</em></h1>");
-	}else{
-		///logon failed
+	} else {
+		 ///logon failed
 		//alert("login failed");
 		document.getElementById("msg").innerText = "Your login was abandoned due invalid CRED";
 	}
