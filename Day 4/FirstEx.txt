@@ -1,0 +1,58 @@
+///Simple variables
+var x = 10;
+x;
+typeof(x);
+x = "10";
+typeof(x);
+var y = parseInt(x);
+y;
+x = false;
+typeof(X);
+typeof(x);
+
+
+( ) - parenthesis
+{ } - braces
+[ ] - Bracket
+
+var arrFruits = ["Apple","Banana","Cherry"];
+arrFruits;
+arrFruits.length;
+arrFruits[0];
+arrFruits[arrFruits.length - 1];
+arrFruits.splice(1,0,"Mango");
+arrFruits;
+arrFruits.splice(2,1);
+arrFruits;
+arrFruits.push("Pineapple");
+arrFruits;
+arrFruits.pop();
+var arrDryFruits = ["Cashew", "Almond","Groundnut"];
+arrFruits.concat(arrDryFruits);
+var a2 = arrFruits.concat(arrDryFruits);
+
+for(var i=0; i<a2.length; i++){
+     var item = a2[i];console.log(item);
+}
+
+
+
+///String operations
+var name = "anubhav oberoy";
+name.split(" ");
+var name = "anubhav oberoy";
+var arrName = name.split(" ");
+arrName;
+arrName[0] + "-" + arrName[1];
+name.indexOf("anu");
+name.indexOf("manu");
+
+
+var arrNew = [];
+arrNew.jenifer = 100;
+arrNew.steve = 520;
+arrNew.mike = 200;
+arrNew.roger = 150;
+arrNew.syed = 280;
+arrNew;
+arrNew["mike"];

@@ -1,0 +1,41 @@
+//JSON
+
+
+var oEmp = { "empId": 5000, 
+             "empName": "Anubhav", "salary" : 8500, "curr": "USD" };
+
+oEmp;
+oEmp.empName;
+oEmp.empName = "Ananya";
+oEmp;
+oEmp.smoker = false;
+oEmp;
+delete oEmp.smoker;
+oEmp;
+typeof(oEmp);
+var x = JSON.stringify(oEmp);
+JSON.parse(x);
+
+
+// Create an Array of objects with the details of 4 employee. Each emp has empId, empName, salary, currency
+var empTab = [
+    {"empId": 100, "empName": "Anubhav", "salary" : 600, "curr": "EUR"},
+    {"empId": 200, "empName": "Bilal", "salary" : 950, "curr": "RYL"},
+    {"empId": 360, "empName": "Rafael", "salary" : 1000, "curr": "USD"},
+    {"empId": 400, "empName": "Anamika", "salary" : 890, "curr": "JPY"}
+]
+
+//Length of Array
+empTab.length
+
+//For 1st Element
+empTab[0]
+
+//Find the Currency for 1st element
+empTab[0]["curr"]
+
+//Stringify
+JSON.stringify(empTab)
+
+
+
