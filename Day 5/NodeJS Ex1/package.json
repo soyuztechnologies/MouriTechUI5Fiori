@@ -1,0 +1,20 @@
+{
+  "name": "nodejsbasic",
+  "version": "1.0.0",
+  "description": "My Node Basic",
+  "main": "myfirstnode.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "basics",
+    "of",
+    "node",
+    "js"
+  ],
+  "author": "anubhav",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
