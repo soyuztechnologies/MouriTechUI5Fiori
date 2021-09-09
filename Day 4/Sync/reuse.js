@@ -1,22 +1,24 @@
 function jsBlockingIO() {
 
-    console.log("Anubhav Borrowed book");
+    window.alert("Wife wants to go to office");
     //TImer in JS
-    setTimeout(function() {
-        console.log("Returned the Book");
-        alert("After 10 sec Return The Book");
-    }, 10000); //takes 10 s
-    console.log("Anubhav left Town");
+    //code will execute async
+    setTimeout(function(){
+        window.alert("Husband back from office");
+    },10000);
+    
+    window.alert("She left for office");
 
 }
 
 function jsNonBlockingIO() {
 
-    console.log("Anubhav Borrowed book");
+    window.alert("Wife wants to go to office");
     //TImer in JS
+    //code will execute async
     setTimeout(10000);
-    console.log("Returned the Book");
-    console.log("Anubhav left Town");
+    window.alert("Husband back from office");
+    window.alert("She left for office");
 
 
 }
