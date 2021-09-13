@@ -1,37 +1,28 @@
 <html>
-    <head>
 
-        <script src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
-                data-sap-ui-libs="sap.m"
-                data-sap-ui-theme="sap_bluecrystal"
-                data-sap-ui-resourceroots='{
+<head>
+
+    <script src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+    		data-sap-ui-libs="sap.m, sap.ui.layout"
+    		data-sap-ui-theme="sap_bluecrystal"
+    		data-sap-ui-resourceroots='{
                     "mickey":"./"
                 }'>
-             
-        </script>
+    </script>
 
-        <script>
+    <script>
+        var oView = new sap.ui.view({
+            viewName: "mickey.view.Main",
+            type: "JS"
+        });
 
-            var oView = new sap.ui.view({
-                viewName: "mickey.view.Main",
-                type: "JS"
-            });
+        oView.placeAt("content");
+    </script>
 
-            oView.placeAt("content");
+</head>
 
-            var oView = new sap.ui.view({
-                viewName: "mickey.view.MyXML",
-                type: "XML"
-            });
+<body class="sapUiBody">
+    <div id="content"></div>
+</body>
 
-            oView.placeAt("xmlcode");
-            
-
-        </script>
-
-    </head>
-    <body class="sapUiBody">
-        <div id="xmlcode"></div>
-        <div id="content"></div>
-    </body>
 </html>
