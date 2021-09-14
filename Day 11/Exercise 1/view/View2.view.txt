@@ -1,0 +1,6 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+          controllerName="emc.fin.ar.controller.View2">
+    <Page title="View 2" showNavButton="true" navButtonPress="onBack" >
+        <!-- <Button press="onBack" text="Go Back" /> -->
+    </Page>
+</mvc:View>
