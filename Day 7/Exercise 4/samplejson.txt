@@ -1,0 +1,37 @@
+{
+    "empStr": {
+        "empId": "9000",
+        "empName": "Daenerys",
+        "salary": 15000,
+        "currency": "USD",
+        "mario": true
+    },
+    "empTab": [
+        {
+            "empId": "9001",
+            "empName": "Terian",
+            "salary": 5500,
+            "currency": "USD"
+        },{
+            "empId": "9002",
+            "empName": "Sarsi",
+            "salary": 9800,
+            "currency": "EUR"
+        },{
+            "empId": "9003",
+            "empName": "Aliya",
+            "salary": 7800,
+            "currency": "EUR"
+        },{
+            "empId": "9004",
+            "empName": "Ned Stark",
+            "salary": 6600,
+            "currency": "AED"
+        },{
+            "empId": "9005",
+            "empName": "Jamie",
+            "salary": 15000,
+            "currency": "INR"
+        }
+    ]
+}

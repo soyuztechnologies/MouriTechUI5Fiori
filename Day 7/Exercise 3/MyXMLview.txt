@@ -3,20 +3,19 @@
         <f:SimpleForm editable="true" id="myForm">
             <f:content>
                 <Label text="Emp ID"/>
-                <Input id="idEmpID" value="{/empStr/empId}" enabled="{/empStr/mario}" width="200px" maxLength="5"/>
+                <Input id="idEmpID" value="{/empStr/empId}" width="200px" maxLength="5"/>
                 <Label text="Emp Name"/>
-                <Input id="idEmpName" value="{/empStr/empName}" enabled="{/empStr/mario}" width="400px"/>
+                <Input id="idEmpName" value="{/empStr/empName}" width="400px"/>
                 <Label text="Salary"/>
-                <Input id="idEmpSal" value="{/empStr/salary}" 
-                       enabled="{= ${/empStr/empName} === 'Anubhav' ? false : true }" width="180px"/>
+                <Input id="idEmpSal" value="{/empStr/salary}" width="180px"/>
                 <Label text="Currency"/>
-                <Input id="idEmpCurr" value="{/empStr/currency}" enabled="{/empStr/mario}" width="120px"/>
+                <Input id="idEmpCurr" value="{/empStr/currency}" width="120px"/>
             </f:content>
         </f:SimpleForm>
         
         <Button text="Show Data" id="idShow" press="onShow"/>
         <Button id="MyButton" text="Click Me" press="clickMe"/>
-        <Button id="grayOut" text="Magic in the Air!" press="onMagic" />
+
         <t:Table>
             <t:columns>
                 <t:Column>
