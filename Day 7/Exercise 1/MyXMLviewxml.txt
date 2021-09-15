@@ -14,7 +14,5 @@
 	</f:SimpleForm>
 	<Button text="Show Data" id="idShow" press="onShow"/>
 	<Button id="MyButton" text="Click Me" press="clickMe"/>
-	<t:Table>
-		<t:columns></t:columns>
-	</t:Table>
+	
 </mvc:View>
