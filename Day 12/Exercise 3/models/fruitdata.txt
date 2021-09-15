@@ -1,0 +1,652 @@
+{
+	"fruits": [
+	    {
+			"name": "Apples",
+			"type": "Alkaline",
+			"color": "Red",
+			"healthBenefit": "Good for Weight Loss",
+			"imageURL": "https://image.shutterstock.com/image-photo/red-apple-on-white-background-260nw-158989157.jpg",
+			"price": 100,
+			"currency": "INR",
+			"status": "Available"
+		},
+		{
+			"name": "Banana",
+			"type": "Alkaline",
+			"color": "Yellow",
+			"healthBenefit": "Good source of potassium",
+			"imageURL": "https://api.time.com/wp-content/uploads/2019/11/gettyimages-459761948.jpg?quality=85&crop=0px%2C74px%2C1024px%2C536px&resize=1200%2C628&strip",
+			"price": 50,
+			"currency": "INR",
+			"status": "Available"
+		},
+		{
+			"name": "Mango",
+			"type": "Acidic",
+			"color": "Yellow",
+			"healthBenefit": "Promotes eye health",
+			"imageURL": "https://c8.alamy.com/comp/WFKTXA/isolated-mango-fruit-tree-branch-with-leaves-and-one-yellow-mango-isolated-on-white-background-with-clipping-path-WFKTXA.jpg",
+			"price": 120,
+			"currency": "INR",
+			"status": "Available"
+		},
+		{
+			"name": "Kiwi",
+			"type": "Citrus",
+			"color": "Green",
+			"healthBenefit": "Good source of fiber",
+			"imageURL": "https://i.guim.co.uk/img/static/sys-images/Guardian/Pix/pictures/2010/10/15/1287157586195/Kiwi-fruit-006.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=c6cfa6fbcb85618d75cb633ef946582b",
+			"price": 220,
+			"currency": "INR",
+			"status": "Out of Stock"
+		},
+		{
+			"name": "Grapes",
+			"type": "Citrus",
+			"color": "Green",
+			"healthBenefit": "High Antioxidant Contents May Prevent Chronic Diseases",
+			"imageURL": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Table_grapes_on_white.jpg",
+			"price": 110,
+			"currency": "INR",
+			"status": "Available"
+		},
+		{
+			"name": "Oranges",
+			"type": "Citrus",
+			"color": "Orange",
+			"healthBenefit": "Keeps blood pressure under check",
+			"imageURL": "https://www.marlerblog.com/files/2013/03/orange.jpg",
+			"price": 130,
+			"currency": "INR",
+			"status": "Available"
+		},
+		{
+			"name": "Strawberries",
+			"type": "berries",
+			"color": "Red",
+			"healthBenefit": "Rich in antioxidants",
+			"imageURL": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Strawberry_BNC.jpg",
+			"price": 230,
+			"currency": "INR",
+			"status": "Out of Stock"
+		},
+		{
+			"name": "Blueberries",
+			"type": "berries",
+			"color": "Blue",
+			"healthBenefit": "Rich in antioxidants",
+			"imageURL": "https://s7d6.scene7.com/is/image/bjs/22203?$bjs-Zoom$",
+			"price": 250,
+			"currency": "INR",
+			"status": "Out of Stock"
+		},
+		{
+			"name": "Blackberries",
+			"type": "berries",
+			"color": "Black",
+			"healthBenefit": "Rich in antioxidants",
+			"imageURL": "https://www.almanac.com/sites/default/files/image_nodes/blackberries-dish.jpg",
+			"price": 260,
+			"currency": "INR",
+			"status": "Out of Stock"
+		},
+		{
+			"name": "Guava",
+			"type": "Alkaline",
+			"color": "Green",
+			"healthBenefit": "May Boost Heart Health",
+			"imageURL": "https://miro.medium.com/max/1200/1*d_2uqzG2HltwtSgndHl4bA.jpeg",
+			"price": 210,
+			"currency": "INR",
+			"status": "Discontinued"
+		},
+		{
+			"name": "Pineapple",
+			"type": "Neutral",
+			"color": "Yellow",
+			"healthBenefit": "May Boost Immunity and Suppress Inflammation",
+			"imageURL": "https://i0.wp.com/post.healthline.com/wp-content/uploads/2019/10/pineapple-fruit-1296x728-header-1296x728.jpg?w=1155&h=1528",
+			"price": 320,
+			"currency": "INR",
+			"status": "Discontinued"
+		},
+		{
+			"name": "Sapota",
+			"type": "Neutral",
+			"color": "Brown",
+			"healthBenefit": "Controls Blood Pressure",
+			"imageURL": "https://i.ndtvimg.com/i/2016-06/sapota_625x350_61466151843.jpg",
+			"price": 350,
+			"currency": "INR",
+			"status": "Unavailable"
+		},
+		{
+			"name": "Watermelon",
+			"type": "Neutral",
+			"color": "Dark Green",
+			"healthBenefit": "Helps in weight loss",
+			"imageURL": "https://images-na.ssl-images-amazon.com/images/I/91tCuetFu6L._AC_SL1500_.jpg",
+			"price": 120,
+			"currency": "INR",
+			"status": "Available"
+		},
+		{
+			"name": "Pear",
+			"type": "Alkaline",
+			"color": "Green",
+			"healthBenefit": "High in antioxidants",
+			"imageURL": "https://www.producemarketguide.com/sites/default/files/Commodities.tar/Commodities/pears_commodity-page.png",
+			"price": 120,
+			"currency": "INR",
+			"status": "Available"
+		},
+		{
+			"name": "Peach",
+			"type": "Neutral",
+			"color": "Orange",
+			"healthBenefit": "Boost immune system",
+			"imageURL": "https://i.stack.imgur.com/Nqx6J.png",
+			"price": 330,
+			"currency": "INR",
+			"status": "Out of Stock"
+		},
+		{
+			"name": "Apricots",
+			"type": "Alkaline",
+			"color": "Orange",
+			"healthBenefit": "May promote eye health",
+			"imageURL": "https://cdn11.bigcommerce.com/s-keybtwmv8u/images/stencil/1280x1280/products/4764/4820/apricot__57201.1566396393.jpg?c=2&imbypass=on",
+			"price": 400,
+			"currency": "INR",
+			"status": "Out of Stock"
+		},
+		{
+			"name": "Papaya",
+			"type": "Citrus",
+			"color": "Yellow",
+			"healthBenefit": "Good for skin health",
+			"imageURL": "https://www.catalyticgenerators.com/wp-content/uploads/2015/10/papayas-210x201.jpg",
+			"price": 180,
+			"currency": "INR",
+			"status": "Unavailable"
+		},
+		{
+			"name": "Cherries",
+			"type": "Citrus",
+			"color": "Red",
+			"healthBenefit": "Can boost exercise recovery",
+			"imageURL": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Cherry_Stella444.jpg",
+			"price": 250,
+			"currency": "INR",
+			"status": "Out of Stock"
+		},
+		{
+			"name": "Plums",
+			"type": "Neutral",
+			"color": "Red",
+			"healthBenefit": "Good source of fiber",
+			"imageURL": "https://image.shutterstock.com/image-photo/plum-on-white-background-260nw-676138906.jpg",
+			"price": 210,
+			"currency": "INR",
+			"status": "Out of Stock"
+		},
+		{
+			"name": "Lychee",
+			"type": "Alkaline",
+			"color": "Pink",
+			"healthBenefit": "Good source of vitamin C",
+			"imageURL": "https://s7d5.scene7.com/is/image/CentralMarket/000448945-1?$large$&hei=416&wid=416",
+			"price": 220,
+			"currency": "INR",
+			"status": "Out of Stock"
+		}
+	],
+	"suppliers": [
+	     {
+			"name": "Mahadev Suppliers",
+			"sinceWhen": 1977,
+			"contactPerson": "Shiva",
+			"contactNo": 9491233441,
+			"city": "New Delhi",
+			"latidude": 28.610001,
+			"longitude": 77.230003,
+			"suppFruits": [{
+					"name": "Banana"
+				},
+				{
+					"name": "Apricots"
+				},
+				{
+					"name": "Lychee"
+				}
+			]
+		},
+		{
+			"name": "Rajan Suppliers",
+			"sinceWhen": 1967,
+			"contactPerson": "Enbaraj",
+			"contactNo": 9011023241,
+			"city": "Chennai",
+			"latidude": 13.067439,
+			"longitude": 80.237617,
+			"suppFruits": [{
+					"name": "Mango"
+				},
+				{
+					"name": "Guava"
+				}
+			]
+		},
+		{
+			"name": "Jasti Suppliers",
+			"sinceWhen": 1981,
+			"contactPerson": "Suresh",
+			"contactNo": 9293230012,
+			"city": "Rajamundry",
+			"latidude": 17.004393,
+			"longitude": 81.783325,
+			"suppFruits": [{
+					"name": "Mango"
+				},
+				{
+					"name": "Banana"
+				}
+			]
+		},
+		{
+			"name": "Shubrato Suppliers",
+			"sinceWhen": 1961,
+			"contactPerson": "Sahar",
+			"contactNo": 9293211012,
+			"city": "Kolkata",
+			"latidude": 22.5626297,
+			"longitude": 88.3630371,
+			"suppFruits": [{
+					"name": "Strawberries"
+				},
+				{
+					"name": "Plums"
+				}
+			]
+		},
+		{
+			"name": "Kher Suppliers",
+			"sinceWhen": 1988,
+			"contactPerson": "Anu",
+			"contactNo": 9111211012,
+			"city": "Kashmir",
+			"latidude": 34.083656,
+			"longitude": 74.797371,
+			"suppFruits": [{
+					"name": "Apples"
+				},
+				{
+					"name": "Kiwis"
+				}
+			]
+		},
+		{
+			"name": "Haribol Fruit Shop",
+			"sinceWhen": 1988,
+			"contactPerson": "Anu",
+			"contactNo": 9003021474,
+			"city": "Bhuvaneswar",
+			"latidude": 20.296059,
+			"longitude": 85.824539,
+			"suppFruits": [{
+					"name": "Orange"
+				},
+				{
+					"name": "Watermelon"
+				}
+			]
+		},
+		{
+			"name": "Jaiswal Fruit Suppliers",
+			"sinceWhen": 1940,
+			"contactPerson": "Rakesh",
+			"contactNo": 9920621404,
+			"city": "Mumbai",
+			"latidude": 19.076090,
+			"longitude": 72.877426,
+			"suppFruits": [{
+					"name": "Pineapple"
+				},
+				{
+					"name": "Blueberries"
+				}
+			]
+		},
+		{
+			"name": "Krushna Fruit Suppliers",
+			"sinceWhen": 1999,
+			"contactPerson": "Mauli",
+			"contactNo": 9595760065,
+			"city": "Pune",
+			"latidude": 18.516726,
+			"longitude": 73.856255,
+			"suppFruits": [{
+					"name": "Pear"
+				},
+				{
+					"name": "Peach"
+				}
+			]
+		},
+		{
+			"name": "R K Distributors",
+			"sinceWhen": 1981,
+			"contactPerson": "Rajan",
+			"contactNo": 9495410010,
+			"city": "Bangalore",
+			"latidude": 12.972442,
+			"longitude": 77.580643,
+			"suppFruits": [{
+					"name": "Grapes"
+				},
+				{
+					"name": "Apples"
+				}
+			]
+		},
+		{
+			"name": "Guru Fruit Suppliers",
+			"sinceWhen": 1991,
+			"contactPerson": "Mane",
+			"contactNo": 9697101121,
+			"city": "Mysore",
+			"latidude": 12.2979097,
+			"longitude": 76.6392517,
+			"suppFruits": [{
+					"name": "Papaya"
+				},
+				{
+					"name": "Mango"
+				}
+			]
+		},
+		{
+			"name": "ASR Vegetable Shop",
+			"sinceWhen": 1979,
+			"contactPerson": "Satya",
+			"contactNo": 9890220220,
+			"city": "Hyderabad",
+			"latidude": 17.387140,
+			"longitude": 78.491684,
+			"suppFruits": [{
+					"name": "Mango"
+				},
+				{
+					"name": "Strawberries"
+				}
+			]
+		},
+		{
+			"name": "Gandalal Fruit Suppliers",
+			"sinceWhen": 1959,
+			"contactPerson": "Mohan",
+			"contactNo": 9191023411,
+			"city": "Jaipur",
+			"latidude": 26.922070,
+			"longitude": 75.778885,
+			"suppFruits": [{
+					"name": "Cherries"
+				},
+				{
+					"name": "Sapota"
+				}
+			]
+		},
+		{
+			"name": "Maa Tara suppFruits Company",
+			"sinceWhen": 1990,
+			"contactPerson": "Suman",
+			"contactNo": 9988201101,
+			"city": "Shimla",
+			"latidude": 31.104605,
+			"longitude": 77.173424,
+			"suppFruits": [{
+					"name": "Apples"
+				},
+				{
+					"name": "Strawberries"
+				}
+			]
+		},
+		{
+			"name": "Malabar suppFruits Company",
+			"sinceWhen": 2000,
+			"contactPerson": "Karthik",
+			"contactNo": 9596100989,
+			"city": "Kochi",
+			"latidude": 9.9398804,
+			"longitude": 76.2602234,
+			"suppFruits": [{
+					"name": "Banana"
+				},
+				{
+					"name": "Grapes"
+				}
+			]
+		},
+		{
+			"name": "Mas suppFruits Company",
+			"sinceWhen": 2010,
+			"contactPerson": "Tilak",
+			"contactNo": 9871234033,
+			"city": "Ooty",
+			"latidude": 11.410000,
+			"longitude": 76.699997,
+			"suppFruits": [{
+					"name": "Grapes"
+				},
+				{
+					"name": "Oranges"
+				}
+			]
+		},
+		{
+			"name": "Anand suppFruits Company",
+			"sinceWhen": 2002,
+			"contactPerson": "Paul",
+			"contactNo": 9102234983,
+			"city": "Gandhi Nagar",
+			"latidude": 23.237560,
+			"longitude": 72.647781,
+			"suppFruits": [{
+					"name": "Apples"
+				},
+				{
+					"name": "Lychee"
+				}
+			]
+		},
+		{
+			"name": "Kanyalal suppFruits Vendor",
+			"sinceWhen": 1980,
+			"contactPerson": "Nilesh",
+			"contactNo": 9769920122,
+			"city": "Ahmedabad",
+			"latidude": 23.033863,
+			"longitude": 72.585022,
+			"suppFruits": [{
+					"name": "Banana"
+				},
+				{
+					"name": "Papaya"
+				}
+			]
+		},
+		{
+			"name": "K V suppFruits Vendor",
+			"sinceWhen": 1989,
+			"contactPerson": "John",
+			"contactNo": 9492110010,
+			"city": "Trivandrum",
+			"latidude": 8.524139,
+			"longitude": 76.936638,
+			"suppFruits": [{
+					"name": "Banana"
+				},
+				{
+					"name": "Grapes"
+				}
+			]
+		},
+		{
+			"name": "Gobind suppFruits Vendor",
+			"sinceWhen": 1959,
+			"contactPerson": "Manindar",
+			"contactNo": 9290010234,
+			"city": "Amritsar",
+			"latidude": 31.633980,
+			"longitude": 74.872261,
+			"suppFruits": [{
+					"name": "Apples"
+				},
+				{
+					"name": "Bananas"
+				}
+			]
+		},
+		{
+			"name": "Ajinkya suppFruits",
+			"sinceWhen": 1944,
+			"contactPerson": "Rane",
+			"contactNo": 9494430032,
+			"city": "Guwahati",
+			"latidude": 26.148043,
+			"longitude": 91.731377,
+			"suppFruits": [{
+					"name": "Cherries"
+				},
+				{
+					"name": "Guava"
+				}
+			]
+		}
+	],
+	"cities": [
+	    {
+			"name": "Jaipur",
+			"famousFor": "Forts",
+			"type": "Tier2",
+			"otherName": "Pink City"
+		},
+		{
+			"name": "Hyderabad",
+			"famousFor": "Nizams",
+			"type": "Tier1",
+			"otherName": "Nizam City"
+		},
+		{
+			"name": "Rajamundry",
+			"famousFor": "Poets",
+			"type": "Tier3",
+			"otherName": "Rajamahendri"
+		},
+		{
+			"name": "Amritsar",
+			"famousFor": "Golden Temple",
+			"type": "Tier2",
+			"otherName": "Ambarsar"
+		},
+		{
+			"name": "Mumbai",
+			"famousFor": "Beaches",
+			"type": "Tier1",
+			"otherName": "Bombay"
+		},
+		{
+			"name": "Pune",
+			"famousFor": "Forts",
+			"type": "Tier1",
+			"otherName": "Punyanagari"
+		},
+		{
+			"name": "New Delhi",
+			"famousFor": "Parliament",
+			"type": "Tier1",
+			"otherName": "Hastinapur"
+		},
+		{
+			"name": "Bangalore",
+			"famousFor": "IT Hub",
+			"type": "Tier1",
+			"otherName": "Benguluru"
+		},
+		{
+			"name": "Mysore",
+			"famousFor": "Palaces",
+			"type": "Tier1",
+			"otherName": "City of Palaces"
+		},
+		{
+			"name": "Bhuvaneswar",
+			"famousFor": "Temples",
+			"type": "Tier2",
+			"otherName": "Bhubaneswar"
+		},
+		{
+			"name": "Guwahati",
+			"famousFor": "Rivers",
+			"type": "Tier3",
+			"otherName": "Pragjyotishpur"
+		},
+		{
+			"name": "Trivandrum",
+			"famousFor": "Temples",
+			"type": "Tier3",
+			"otherName": "Thiruvanantapuram"
+		},
+		{
+			"name": "Ahmedabad",
+			"famousFor": "Textiles",
+			"type": "Tier2",
+			"otherName": "Karnavati"
+		},
+		{
+			"name": "Ooty",
+			"famousFor": "Hills",
+			"type": "Tier3",
+			"otherName": "Udhagamandalam"
+		},
+		{
+			"name": "Kashmir",
+			"famousFor": "Natural Beauty",
+			"type": "Tier3",
+			"otherName": "Kashyapa Mir"
+		},
+		{
+			"name": "Gandhi Nagar",
+			"famousFor": "Food Culture",
+			"type": "Tier2",
+			"otherName": "Gandhi Nagar"
+		},
+		{
+			"name": "Shimla",
+			"famousFor": "Tourism",
+			"type": "Tier2",
+			"otherName": "Shamla"
+		},
+		{
+			"name": "Kochi",
+			"famousFor": "Temples",
+			"type": "Tier3",
+			"otherName": "Ernakulam"
+		},
+		{
+			"name": "Kolkata",
+			"famousFor": "Literature",
+			"type": "Tier1",
+			"otherName": "Calcutta"
+		},
+		{
+			"name": "Chennai",
+			"famousFor": "Temples",
+			"type": "Tier1",
+			"otherName": "Madras"
+		}
+    ],
+    "selectedFruits": []
+}

@@ -1,0 +1,7 @@
+appTitle=My Fruit Store
+appDescription=The Fruits Store application
+fruit=Fruits
+Name=Name
+Color=Color
+Type=Type
+Supplier=Supplier name
