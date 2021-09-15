@@ -1,0 +1,90 @@
+{
+    "empStr": {
+        "empId": 5000,
+        "empName": "Anubhav",
+        "salary": 6500,
+        "currency": "EUR",
+        "mario": true
+    },
+    "empTab": [{
+        "empId": 9000,
+        "empName": "Anaya",
+        "salary": 5580,
+        "currency": "USD",
+        "smoker": false,
+        "gender": "https://cdn1.iconfinder.com/data/icons/website-internet/48/website_-_female_user-512.png",
+        "mStat": "S",
+        "rating": 5
+    },
+    {
+        "empId": 9001,
+        "empName": "Alex",
+        "salary": 7480,
+        "currency": "EUR",
+        "smoker": true,
+        "gender": "https://icons-for-free.com/iconfiles/png/512/business+costume+male+man+office+user+icon-1320196264882354682.png",
+        "mStat": "M",
+        "rating": 3
+    },
+    {
+        "empId": 9002,
+        "empName": "Soumya",
+        "salary": 8800,
+        "currency": "INR",
+        "smoker": false,
+        "gender": "https://cdn1.iconfinder.com/data/icons/website-internet/48/website_-_female_user-512.png",
+        "mStat": "M",
+        "rating": 4
+    },
+    {
+        "empId": 9003,
+        "empName": "Paulo",
+        "salary": 5880,
+        "currency": "BRL",
+        "smoker": false,
+        "gender": "https://icons-for-free.com/iconfiles/png/512/business+costume+male+man+office+user+icon-1320196264882354682.png",
+        "mStat": "M",
+        "rating": 4
+    },
+    {
+        "empId": 9004,
+        "empName": "Simon",
+        "salary": 5580,
+        "currency": "EUR",
+        "smoker": true,
+        "gender": "https://icons-for-free.com/iconfiles/png/512/business+costume+male+man+office+user+icon-1320196264882354682.png",
+        "mStat": "S",
+        "rating": 2
+    },
+    {
+        "empId": 9005,
+        "empName": "Syed",
+        "salary": 8800,
+        "currency": "RYL",
+        "smoker": false,
+        "gender": "https://icons-for-free.com/iconfiles/png/512/business+costume+male+man+office+user+icon-1320196264882354682.png",
+        "mStat": "M",
+        "rating": 5
+    },
+    {
+        "empId": 9006,
+        "empName": "Aameen",
+        "salary": 5570,
+        "currency": "EUR",
+        "smoker": true,
+        "gender": "https://cdn1.iconfinder.com/data/icons/website-internet/48/website_-_female_user-512.png",
+        "mStat": "S",
+        "rating": 2
+    },
+    {
+        "empId": 9007,
+        "empName": "Anurag",
+        "salary": 6900,
+        "currency": "INR",
+        "smoker": true,
+        "gender": "https://icons-for-free.com/iconfiles/png/512/business+costume+male+man+office+user+icon-1320196264882354682.png",
+        "mStat": "M",
+        "rating": 1
+    }
+    ]
+}

@@ -1,0 +1,55 @@
+{
+	"empStr": {
+		"empId": "9000",
+		"empName": "Daenerys",
+		"salary": 15000,
+		"currency": "USD",
+		"mario": true
+	},
+	"empTab": [{
+		"empId": "9001",
+		"empName": "Terian",
+		"salary": 5500,
+		"currency": "USD",
+		"smoker": false,
+		"gender": "https://icons-for-free.com/iconfiles/png/512/business+costume+male+man+office+user+icon-1320196264882354682.png",
+		"mStat": "S",
+		"rating": 1
+	}, {
+		"empId": "9002",
+		"empName": "Sarsi",
+		"salary": 9800,
+		"currency": "EUR",
+		"smoker": true,
+		"gender": "https://cdn1.iconfinder.com/data/icons/website-internet/48/website_-_female_user-512.png",
+		"mStat": "S",
+		"rating": 2
+	}, {
+		"empId": "9003",
+		"empName": "Aliya",
+		"salary": 7800,
+		"currency": "EUR",
+		"smoker": false,
+		"gender": "https://cdn1.iconfinder.com/data/icons/website-internet/48/website_-_female_user-512.png",
+		"mStat": "S",
+		"rating": 3
+	}, {
+		"empId": "9004",
+		"empName": "Ned Stark",
+		"salary": 6600,
+		"currency": "AED",
+		"smoker": false,
+		"gender": "https://icons-for-free.com/iconfiles/png/512/business+costume+male+man+office+user+icon-1320196264882354682.png",
+		"mStat": "S",
+		"rating": 4
+	}, {
+		"empId": "9005",
+		"empName": "Jamie",
+		"salary": 15000,
+		"currency": "INR",
+		"smoker": true,
+		"gender": "https://cdn1.iconfinder.com/data/icons/website-internet/48/website_-_female_user-512.png",
+		"mStat": "S",
+		"rating": 5
+	}]
+}
