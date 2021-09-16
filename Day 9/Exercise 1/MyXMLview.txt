@@ -1,15 +1,10 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
         xmlns:f="sap.ui.layout.form" xmlns="sap.m" xmlns:t="sap.ui.table" controllerName="mickey.controller.MyXML">
-        <t:Table id="myTable" selectionMode="Single" visibleRowCount="3" rowSelectionChange="onRowSelect">
-            <t:extension>
-                <Toolbar >
-                    <Button icon="sap-icon://delete" type="Transparent" press="onDelete" />
-                </Toolbar>
-            </t:extension>
+        <t:Table rows="{/empTab}" selectionMode="Single" visibleRowCount="3" rowSelectionChange="onRowSelect">
             <t:columns>
                 <t:Column>
                     <t:label>
-                        <Text text="{i18n>XTIT_EMPNO}" />
+                        <Text text="Emp Id" />
                     </t:label>
                     <t:template>
                         <Text text="{empId}" />
@@ -17,15 +12,15 @@
                 </t:Column>
                 <t:Column>
                     <t:label>
-                        <Text text="{i18n>XTIT_EMPNAME}" />
+                        <Text text="Emp Name" />
                     </t:label>
                     <t:template>
-                        <Text text="{path : 'empName'}" />
+                        <Text text="{empName}" />
                     </t:template>
                 </t:Column>
                 <t:Column>
                     <t:label>
-                        <Text text="{i18n>XTIT_SALARY}" />
+                        <Text text="Salary" />
                     </t:label>
                     <t:template>
                         <Text text="{salary} {currency}" />
@@ -33,7 +28,7 @@
                 </t:Column>
                 <t:Column>
                     <t:label>
-                        <Text text="{i18n>XTIT_CURR}" />
+                        <Text text="Smoker" />
                     </t:label>
                     <t:template>
                         <CheckBox selected="{smoker}" ></CheckBox>
@@ -41,7 +36,7 @@
                 </t:Column>
                 <t:Column>
                     <t:label>
-                        <Text text="{i18n>XTIT_GEN}" />
+                        <Text text="Gender" />
                     </t:label>
                     <t:template>
                         <Image src="{picUrl}" width="30px" height="30px"></Image>
@@ -49,7 +44,7 @@
                 </t:Column>
                 <t:Column>
                     <t:label>
-                        <Text text="{i18n>XTIT_MSTAT}" />
+                        <Text text="Marital Status" />
                     </t:label>
                     <t:template>
                         <Select selectedKey="{mStat}">
@@ -62,7 +57,7 @@
                 </t:Column>
                 <t:Column>
                     <t:label>
-                        <Text text="{i18n>XTIT_RATE}" />
+                        <Text text="Rating" />
                     </t:label>
                     <t:template>
                         <RatingIndicator value="{rating}"></RatingIndicator>
@@ -73,21 +68,21 @@
 
         <f:SimpleForm editable="true" id="myForm">
             <f:content>
-                <Label text="{i18n>XTIT_EMPNO}"/>
-                <Input id="idEmpID" value="{empId}"  width="200px" maxLength="5"/>
-                <Label text="{i18n>XTIT_EMPNAME}"/>
-                <Input id="idEmpName" value="{path : 'empName'}"  width="400px"/>
-                <Label text="{i18n>XTIT_SALARY}"/>
-                <Input id="idEmpSal" value="{salary}"
+                <Label text="Emp ID"/>
+                <Input id="idEmpID" value="{/empStr/empId}" enabled="{/empStr/mario}" width="200px" maxLength="5"/>
+                <Label text="Emp Name"/>
+                <Input id="idEmpName" value="{/empStr/empName}" enabled="{/empStr/mario}" width="400px"/>
+                <Label text="Salary"/>
+                <Input id="idEmpSal" value="{/empStr/salary}" 
                        enabled="{= ${/empStr/empName} === 'Anubhav' ? false : true }" width="180px"/>
-                <Label text="{i18n>XTIT_CURR}"/>
-                <Input id="idEmpCurr" value="{currency}"  width="120px"/>
+                <Label text="Currency"/>
+                <Input id="idEmpCurr" value="{/empStr/currency}" enabled="{/empStr/mario}" width="120px"/>
             </f:content>
         </f:SimpleForm>
         
-        <Button text="{i18n>XBUT_SHOW}" id="idShow" press="onShow"/>
-        <Button id="MyButton" text="{i18n>XBUT_CLICK}" press="clickMe"/>
-        <Button id="grayOut" text="{i18n>XBUT_MAGIC}" press="onMagic" />
-        <Button id="idFlip" text="{i18n>XBUT_FLIP}" press="onFlip" />
+        <Button text="Show Data" id="idShow" press="onShow"/>
+        <Button id="MyButton" text="Click Me" press="clickMe"/>
+        <Button id="grayOut" text="Magic in the Air!" press="onMagic" />
+        <Button id="idFlip" text="Flip Model" press="onFlip" />
         
 </mvc:View>
