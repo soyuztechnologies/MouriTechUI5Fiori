@@ -1,0 +1,12 @@
+XTIT_EMPNO=Employee Number
+XTIT_EMPNAME=Employee Name
+XTIT_SALARY=Salary
+XTIT_CURR=Currency
+XTIT_GEN=Gender
+XTIT_SMK=Smoker
+XTIT_MSTAT=Marital Status
+XTIT_RATE=Rating
+XBUT_SHOW=Show Data
+XBUT_MAGIC=Magic in the Air
+XBUT_FLIP=Flip Model
+XBUT_CLICK=Click Me

@@ -1,0 +1,12 @@
+XTIT_EMPNO=कर्मचारी संख्या
+XTIT_EMPNAME=कर्मचारी का नाम
+XTIT_SALARY=वेतन
+XTIT_CURR=मुद्रा
+XTIT_GEN=लिंग
+XTIT_SMK=धूम्रपान न करने वाला
+XTIT_MSTAT=वैवाहिक स्थिति
+XTIT_RATE=रेटिंग
+XBUT_SHOW=डेटा दिखाएं
+XBUT_MAGIC=वायु में जादू
+XBUT_FLIP=फ्लिप मॉडल
+XBUT_CLICK=मुझे क्लिक करें

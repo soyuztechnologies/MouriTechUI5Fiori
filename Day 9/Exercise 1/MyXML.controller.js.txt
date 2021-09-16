@@ -38,6 +38,15 @@ sap.ui.define([
             //Which row was selected
             //What is the address of the row /empTab/index
         },
+        onFlip: function(){
+
+            var oModel = sap.ui.getCore().getModel(oModel);
+            var oModelGOT = sap.ui.getCore().getModel("got");
+
+            sap.ui.getCore().setModel(oModelGOT);
+            sap.ui.getCore().setModel(oModel, "got");
+
+        },
         onBeforeRendering: function(){
             //if(checkings....)
             this.oView.byId("MyButton").setEnabled(false);

@@ -83,4 +83,6 @@
         <Button text="Show Data" id="idShow" press="onShow"/>
         <Button id="MyButton" text="Click Me" press="clickMe"/>
         <Button id="grayOut" text="Magic in the Air!" press="onMagic" />
+        <Button id="idFlip" text="Flip Model" press="onFlip" />
+        
 </mvc:View>

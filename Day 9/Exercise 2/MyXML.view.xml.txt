@@ -1,6 +1,11 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
         xmlns:f="sap.ui.layout.form" xmlns="sap.m" xmlns:t="sap.ui.table" controllerName="mickey.controller.MyXML">
-        <t:Table rows="{/empTab}" selectionMode="Single" visibleRowCount="3" rowSelectionChange="onRowSelect">
+        <t:Table id="myTable" selectionMode="Single" visibleRowCount="3" rowSelectionChange="onRowSelect">
+            <t:extension>
+                <Toolbar >
+                    <Button icon="sap-icon://delete" type="Transparent" press="onDelete" />
+                </Toolbar>
+            </t:extension>
             <t:columns>
                 <t:Column>
                     <t:label>
@@ -15,7 +20,7 @@
                         <Text text="Emp Name" />
                     </t:label>
                     <t:template>
-                        <Text text="{empName}" />
+                        <Text text="{path : 'empName'}" />
                     </t:template>
                 </t:Column>
                 <t:Column>
@@ -69,14 +74,14 @@
         <f:SimpleForm editable="true" id="myForm">
             <f:content>
                 <Label text="Emp ID"/>
-                <Input id="idEmpID" value="{/empStr/empId}" enabled="{/empStr/mario}" width="200px" maxLength="5"/>
+                <Input id="idEmpID" value="{empId}" enabled="{/empStr/mario}" width="200px" maxLength="5"/>
                 <Label text="Emp Name"/>
-                <Input id="idEmpName" value="{/empStr/empName}" enabled="{/empStr/mario}" width="400px"/>
+                <Input id="idEmpName" value="{path : 'empName'}" enabled="{/empStr/mario}" width="400px"/>
                 <Label text="Salary"/>
-                <Input id="idEmpSal" value="{/empStr/salary}" 
+                <Input id="idEmpSal" value="{salary}"
                        enabled="{= ${/empStr/empName} === 'Anubhav' ? false : true }" width="180px"/>
                 <Label text="Currency"/>
-                <Input id="idEmpCurr" value="{/empStr/currency}" enabled="{/empStr/mario}" width="120px"/>
+                <Input id="idEmpCurr" value="{currency}" enabled="{/empStr/mario}" width="120px"/>
             </f:content>
         </f:SimpleForm>
         

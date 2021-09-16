@@ -1,0 +1,1 @@
+  <CheckBox selected="{=${smoker}==='true'?true:false}" ></CheckBox>

@@ -1,8 +1,9 @@
 sap.ui.define([
     "mickey/controller/BaseController",
     "sap/ui/model/json/JSONModel",
-    "mickey/model/models"
-], function(Controller, JSONModel, myModel) {
+    "mickey/model/models",
+    "sap/m/MessageToast"
+], function(Controller, JSONModel, myModel, MessageToast) {
     //'use strict';
     return Controller.extend("mickey.controller.MyXML",{
         //Once my Controller object is created then only initialization should happen
@@ -22,6 +23,13 @@ sap.ui.define([
             sap.ui.getCore().setModel(oModel);
             sap.ui.getCore().setModel(oModelGOT,"got");
             
+            // var oSalary = this.getView().byId("idEmpSal");
+            // oSalary.bindValue("/empStr/salary"); //here we alredy telling UI5 for binding, it is expected from us to pass PATH
+            // var oCurrency = this.getView().byId("idEmpCurr");
+            // oCurrency.bindProperty("value", "/empStr/currency");
+            var oTab = this.getView().byId("myTable");
+            //oTab.bindAggregation("rows", "/empTab");
+            oTab.bindRows("/empTab");
         },
         //TODO: Anubhav to show how to access controller variable value inside view
         anubhav: 9000,
@@ -30,13 +38,32 @@ sap.ui.define([
             //alert("Dude now you just clicked on a row!");
             debugger;
             //first using event object we get the address of the row
-            var rowAddress = oEvent.getParameter("rowContext").getPath();
+            this.elementAddress = oEvent.getParameter("rowContext").getPath();
+            this.index = oEvent.getParameter("rowIndex");
             //using the address we get the data on that row
-            var oRowData = sap.ui.getCore().getModel().getProperty(rowAddress);
+            // oRowData = sap.ui.getCore().getModel().getProperty(elementAddress);
             //this data we set to the empStr so that the twoway show data on screen
-            sap.ui.getCore().getModel().setProperty("/empStr", oRowData);
+            //sap.ui.getCore().getModel().setProperty("/empStr", oRowData);
             //Which row was selected
             //What is the address of the row /empTab/index
+            
+            //NEW Approach - Element Binding
+            //Get The object of Simple Form
+            var oSimple = this.getView().byId("myForm");
+            //Bind Element directly to the Simple form - For Simplefrom, its a Absolute Path now
+            oSimple.bindElement(this.elementAddress);
+
+        },
+        onDelete: function(){debugger;
+            if(this.index === undefined) {
+                MessageToast.show("Please Select a Row");
+                return;
+            }
+            var oModel = sap.ui.getCore().getModel();
+            var aData = oModel.getProperty("/empTab");
+            aData.splice(this.index, 1);
+            oModel.setProperty("/empTab", aData);
+            this.index = undefined;
         },
         onFlip: function(){
 
