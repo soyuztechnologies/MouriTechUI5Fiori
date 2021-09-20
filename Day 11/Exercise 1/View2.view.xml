@@ -1,0 +1,6 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	controllerName="emc.fin.ar.controller.View2">
+	<Page title="View 2" showNavButton="true" navButtonPress="onBack">
+		<ObjectHeader intro="{healthBenefit}" title="{name}" number="{price}" numberUnit="{currency}" icon="{imageURL}"></ObjectHeader>
+	</Page>
+</mvc:View>
