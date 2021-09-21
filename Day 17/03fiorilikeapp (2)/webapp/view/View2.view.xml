@@ -1,0 +1,38 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	controllerName="emc.fin.ar.anubhav.controller.View2">
+	<Page title="View 2" showNavButton="false" navButtonPress="onBack">
+		<ObjectHeader intro="{Description}" title="{ProductId}" number="{Price}" numberUnit="{CurrencyCode}" icon="{imageURL}"></ObjectHeader>
+		<IconTabBar>
+			<items>
+				<IconTabFilter key="moreDetails" text="More Details" icon="https://cdn1.iconfinder.com/data/icons/color-bold-style/21/09_1-512.png">
+					<content>
+						<core:Fragment fragmentName="emc.fin.ar.anubhav.fragments.moreInfo" type="XML" />
+                        <core:Fragment fragmentName="emc.fin.ar.anubhav.fragments.moreInfo" type="XML" />
+					</content>
+				</IconTabFilter>
+				<IconTabFilter key="supplier" text="Suppliers" icon="sap-icon://supplier">
+					<content>
+						<core:Fragment fragmentName="emc.fin.ar.anubhav.fragments.supplierTab" type="XML" />
+					</content>
+				</IconTabFilter>
+				<IconTabFilter key="city" text="Cities" icon="sap-icon://home">
+					<content>
+						<Text text="Testing of All Cities" class="sapUiSmallMargin"></Text>
+						<Select items="{/cities}">
+							<items>
+								<core:Item key="{name}" text="{name}"></core:Item>
+							</items>
+						</Select>
+					</content>
+				</IconTabFilter>
+			</items>
+		</IconTabBar>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button text="Save" type="Accept" icon="sap-icon://save" press="onSave"/>
+				<Button text="Cancel" type="Reject" icon="sap-icon://cancel" press="onCancel"/>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>
