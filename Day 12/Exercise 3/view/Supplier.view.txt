@@ -1,5 +1,0 @@
-<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="emc.fin.ar.controller.Supplier">
-	<Page title="Supplier Data" showNavButton="true" navButtonPress="onBack">
-		<ObjectHeader title="{name} Since {sinceWhen}" intro="{contactPerson}" number="{contactNo}" numberUnit="{city}" icon="sap-icon://supplier"/>
-	</Page>
-</mvc:View>
