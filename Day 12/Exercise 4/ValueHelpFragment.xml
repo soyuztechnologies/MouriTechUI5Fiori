@@ -1,6 +1,4 @@
-<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
-	<SelectDialog id="selectDialog" title="Citites" items="{/suppliers}" search=".onValueHelpSearch" confirm=".onValueHelpClose"
-		cancel=".onValueHelpClose">
-		<StandardListItem title="{city}" description="{sinceWhen}"/>
-	</SelectDialog>
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<SelectDialog id="select"  multiSelect="true"
+                  confirm="onHandleConfirm"> </SelectDialog>
 </core:FragmentDefinition>
