@@ -65,28 +65,36 @@ sap.ui.define([
 			});
 			//Step4: Open fragment object
 			this.oSuppFragment.open();
-		},
+        },
+        onHandleConfirm: function(oEvent){
+            var oSelItem = oEvent.getParameter("selectedItem");
+            this._CityField.setValue(oSelItem.getLabel());
+        },
+        _pValueHelpDialog: null,
 		onValueHelpRequest: function(oEvent) {
 			this._CityField = oEvent.getSource();
 			var sInputValue = oEvent.getSource().getValue(),
-				oView = this.getView();
-
+            oView = this.getView();
+            var that = this;
 			if (!this._pValueHelpDialog) {
-				this._pValueHelpDialog = Fragment.load({
-					id: oView.getId(),
+				Fragment.load({
+					id: 'supplier',
 					name: "emc.fin.ar.fragments.ValueHelpDialog",
 					controller: this
 				}).then(function(oDialog) {
 					oView.addDependent(oDialog);
-					return oDialog;
-				});
-			}
-			this._pValueHelpDialog.then(function(oDialog) {
-				// Create a filter for the binding
-				oDialog.getBinding("items").filter([new Filter("city", FilterOperator.Contains, sInputValue)]);
-				// Open ValueHelpDialog filtered by the input's value
-				oDialog.open(sInputValue);
-			});
+                    that._pValueHelpDialog = oDialog;
+                    that._pValueHelpDialog.bindAggregation("items", {
+                        path: '/cities',
+                        template: new sap.m.DisplayListItem({
+                            label: '{name}'
+                        })
+                    });
+                    that._pValueHelpDialog.open();
+                });
+			}else{
+                this._pValueHelpDialog.open();
+            }
 		},
 		onValueHelpSearch: function(oEvent) {
 
