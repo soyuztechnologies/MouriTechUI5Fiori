@@ -1,6 +1,6 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
-	controllerName="emc.fin.ar.controller.View2">
-	<Page title="View 2" showNavButton="true" navButtonPress="onBack">
+	controllerName="emc.fin.ar.controller.View2" xmlns:wt="emc.fin.ar.control">
+	<Page title="View 2" showNavButton="false" navButtonPress="onBack">
 		<ObjectHeader intro="{healthBenefit}" title="{name}" number="{price}" numberUnit="{currency}" icon="{imageURL}"></ObjectHeader>
 		<IconTabBar>
 			<items>
@@ -10,17 +10,7 @@
 				<IconTabFilter key="SU" text="Suppliers" icon="sap-icon://supplier">
 					<core:Fragment fragmentName="emc.fin.ar.fragments.supplierTab" type="XML"/>
 				</IconTabFilter>
-				<IconTabFilter key="CT" text="City" icon="sap-icon://home">
-					<Select items="{/cities}">
-						<core:Item key="{name}" text="{name}"/>
-					</Select>
-					<ComboBox items="{/cities}">
-						<core:Item key="{name}" text="{name}"/>
-					</ComboBox>
-					<MultiComboBox items="{/cities}">
-						<core:Item key="{name}" text="{name}"/>
-					</MultiComboBox>
-				</IconTabFilter>
+				<IconTabFilter key="CT" text="City" icon="sap-icon://home"></IconTabFilter>
 			</items>
 		</IconTabBar>
 		<footer>

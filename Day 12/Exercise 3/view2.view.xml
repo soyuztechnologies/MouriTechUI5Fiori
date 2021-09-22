@@ -1,22 +1,15 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
-	controllerName="emc.fin.ar.controller.View2">
-	<Page title="View 2" showNavButton="true" navButtonPress="onBack">
+	controllerName="emc.fin.ar.controller.View2" xmlns:wt="emc.fin.ar.control">
+	<Page title="View 2" showNavButton="false" navButtonPress="onBack">
 		<ObjectHeader intro="{healthBenefit}" title="{name}" number="{price}" numberUnit="{currency}" icon="{imageURL}"></ObjectHeader>
 		<IconTabBar>
 			<items>
 				<IconTabFilter key="MI" text="More Info" icon="sap-icon://warning">
-					<f:SimpleForm>
-						<Label text="Name"/>
-						<Text text="{name}"/>
-						<Label text="Type"/>
-						<Text text="{type}"/>
-						<Label text="Color"/>
-						<Text text="{color}"/>
-						<Label text="Helath Benefit"/>
-						<Text text="{healthBenefit}"/>
-					</f:SimpleForm>
+					<core:Fragment fragmentName="emc.fin.ar.fragments.Info" type="XML"/>
 				</IconTabFilter>
-				<IconTabFilter key="SU" text="Suppliers" icon="sap-icon://supplier"></IconTabFilter>
+				<IconTabFilter key="SU" text="Suppliers" icon="sap-icon://supplier">
+					<core:Fragment fragmentName="emc.fin.ar.fragments.supplierTab" type="XML"/>
+				</IconTabFilter>
 				<IconTabFilter key="CT" text="City" icon="sap-icon://home">
 					<Select items="{/cities}">
 						<core:Item key="{name}" text="{name}"/>
