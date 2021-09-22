@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
-	<Table itemPress="onItemPress" items="{/suppliers}">
+	<Table id="idTable" itemPress="onItemPress" items="{/suppliers}">
 		<headerToolbar>
 			<Toolbar>
 				<ToolbarSpacer/>
