@@ -44,31 +44,47 @@ sap.ui.define([
 			MessageToast.show("TODO: Next view navigation to be implemented here");
 		},
 		onSuppFilterPress: function(oEvent) {
-
-			if (!this.oSuppFragment) {
-				//Step1: Create object of the xml Fragment Popup Fragment
-				this.oSuppFragment = new sap.ui.xmlfragment("id1", "emc.fin.ar.fragments.Popup", this);
-
-				this.getView().addDependent(this.oSuppFragment, this);
-
-				var sSuppTitle = this.getOwnerComponent().getModel("i18n").getResourceBundle().getText("Supp_Filter_Dialog_Title");
-				this.oSuppFragment.setTitle(sSuppTitle);
-
-			}
-
-			this.oSuppFragment.bindAggregation("items", {
-				path: '/suppliers',
-				template: new sap.m.DisplayListItem({
-					label: "{name}",
-					value: "{sinceWhen}"
-				})
-			});
-			//Step4: Open fragment object
-			this.oSuppFragment.open();
+            var oView = this.getView();
+            var that = this;
+			if (!this.supplierPopup) {
+				Fragment.load({
+					id: 'supplier',
+					name: "emc.fin.ar.fragments.ValueHelpDialog",
+					controller: this
+				}).then(function(oDialog) {
+					oView.addDependent(oDialog);
+                    that.supplierPopup = oDialog;
+                    that.supplierPopup.bindAggregation("items", {
+                        path: '/suppliers',
+                        template: new sap.m.DisplayListItem({
+                            label: '{name}'
+                        })
+                    });
+                    that.supplierPopup.open();
+                });
+			}else{
+                this.supplierPopup.open();
+            }
         },
         onHandleConfirm: function(oEvent){
-            var oSelItem = oEvent.getParameter("selectedItem");
-            this._CityField.setValue(oSelItem.getLabel());
+            var sId = oEvent.getSource().getId();
+            if(sId.indexOf("supplier") !== -1){
+                var aSelItem = oEvent.getParameter("selectedItems");
+                var aFilters = [];
+                for (let i = 0; i < aSelItem.length; i++) {
+                    const oItem = aSelItem[i];
+                    aFilters.push(new Filter("name", FilterOperator.EQ, oItem.getLabel()))
+                }
+                var oFilter = new Filter({
+                    filters: aFilters,
+                    and: false
+                });
+                this.getView().byId("idTable").getBinding("items").filter(oFilter);
+            }else{
+                var oSelItem = oEvent.getParameter("selectedItem");
+                this._CityField.setValue(oSelItem.getLabel());
+            }
+            
         },
         _pValueHelpDialog: null,
 		onValueHelpRequest: function(oEvent) {
@@ -78,7 +94,7 @@ sap.ui.define([
             var that = this;
 			if (!this._pValueHelpDialog) {
 				Fragment.load({
-					id: 'supplier',
+					id: 'cities',
 					name: "emc.fin.ar.fragments.ValueHelpDialog",
 					controller: this
 				}).then(function(oDialog) {
