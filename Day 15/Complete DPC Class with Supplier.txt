@@ -1,0 +1,648 @@
+class ZCL_ZODATA_AO_DPC_EXT definition
+  public
+  inheriting from ZCL_ZODATA_AO_DPC
+  create public .
+
+public section.
+protected section.
+
+  methods PRODUCTSET_CREATE_ENTITY
+    redefinition .
+  methods PRODUCTSET_DELETE_ENTITY
+    redefinition .
+  methods PRODUCTSET_GET_ENTITY
+    redefinition .
+  methods PRODUCTSET_GET_ENTITYSET
+    redefinition .
+  methods PRODUCTSET_UPDATE_ENTITY
+    redefinition .
+  methods SUPPLIERSET_CREATE_ENTITY
+    redefinition .
+  methods SUPPLIERSET_DELETE_ENTITY
+    redefinition .
+  methods SUPPLIERSET_GET_ENTITY
+    redefinition .
+  methods SUPPLIERSET_GET_ENTITYSET
+    redefinition .
+  methods SUPPLIERSET_UPDATE_ENTITY
+    redefinition .
+private section.
+ENDCLASS.
+
+
+
+CLASS ZCL_ZODATA_AO_DPC_EXT IMPLEMENTATION.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Protected Method ZCL_ZODATA_AO_DPC_EXT->PRODUCTSET_CREATE_ENTITY
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IV_ENTITY_NAME                 TYPE        STRING
+* | [--->] IV_ENTITY_SET_NAME             TYPE        STRING
+* | [--->] IV_SOURCE_NAME                 TYPE        STRING
+* | [--->] IT_KEY_TAB                     TYPE        /IWBEP/T_MGW_NAME_VALUE_PAIR
+* | [--->] IO_TECH_REQUEST_CONTEXT        TYPE REF TO /IWBEP/IF_MGW_REQ_ENTITY_C(optional)
+* | [--->] IT_NAVIGATION_PATH             TYPE        /IWBEP/T_MGW_NAVIGATION_PATH
+* | [--->] IO_DATA_PROVIDER               TYPE REF TO /IWBEP/IF_MGW_ENTRY_PROVIDER(optional)
+* | [<---] ER_ENTITY                      TYPE        ZCL_ZODATA_AO_MPC=>TS_PRODUCT
+* | [!CX!] /IWBEP/CX_MGW_BUSI_EXCEPTION
+* | [!CX!] /IWBEP/CX_MGW_TECH_EXCEPTION
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  method PRODUCTSET_CREATE_ENTITY.
+
+    "Step 1: I need to know what data came from App to be inserted
+    "Step 2: Check the data - prevalidation
+    "Step 3: Call BAPI/ INSERT statement in ABAP to insert in our table
+    "Step 4: Commit Work
+    "Step 5: Post processing
+    "Step 6: Send Response
+
+    data: ls_entity TYPE ZCL_zodata_ao_MPC=>TS_PRODUCT,
+           ls_header type bapi_epm_product_header,
+           lt_ret    type TABLE OF bapiret2.
+
+*    Step 1: Read data which we receive from the screen
+      IO_DATA_PROVIDER->read_entry_data(
+        importing
+          es_data = ls_entity
+      ).
+
+
+*      catch /iwbep/cx_mgw_tech_exception. " mgw technical exception
+*    Step 2: Pass that to the BAPI to create
+      MOVE-CORRESPONDING ls_entity to ls_header.
+      ls_header-tax_tarif_code = '1'.
+      ls_header-measure_unit = 'EA'.
+
+      call function 'BAPI_EPM_PRODUCT_CREATE'
+        exporting
+          headerdata               = ls_header
+*         PERSIST_TO_DB            = ABAP_TRUE
+        TABLES
+*         CONVERSION_FACTORS       =
+          RETURN                   = lt_ret
+                .
+
+*    Step 3: Response of data
+      MOVE-CORRESPONDING ls_header to er_entity.
+
+
+  endmethod.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Protected Method ZCL_ZODATA_AO_DPC_EXT->PRODUCTSET_DELETE_ENTITY
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IV_ENTITY_NAME                 TYPE        STRING
+* | [--->] IV_ENTITY_SET_NAME             TYPE        STRING
+* | [--->] IV_SOURCE_NAME                 TYPE        STRING
+* | [--->] IT_KEY_TAB                     TYPE        /IWBEP/T_MGW_NAME_VALUE_PAIR
+* | [--->] IO_TECH_REQUEST_CONTEXT        TYPE REF TO /IWBEP/IF_MGW_REQ_ENTITY_D(optional)
+* | [--->] IT_NAVIGATION_PATH             TYPE        /IWBEP/T_MGW_NAVIGATION_PATH
+* | [!CX!] /IWBEP/CX_MGW_BUSI_EXCEPTION
+* | [!CX!] /IWBEP/CX_MGW_TECH_EXCEPTION
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  method PRODUCTSET_DELETE_ENTITY.
+
+     data: lv_prod_id TYPE bapi_epm_product_id.
+
+    READ TABLE it_key_tab INTO data(ls_key) INDEX 1.
+    lv_prod_id = ls_key-value.
+
+    CALL FUNCTION 'BAPI_EPM_PRODUCT_DELETE'
+      EXPORTING
+        product_id    =  lv_prod_id                " EPM: Product ID
+*        persist_to_db = abap_true        " Flag: Save data to DB (yes/no)
+*      TABLES
+*        return        =                  " Return Parameter
+      .
+*    delete from snwd_pd WHERE product_id = lv_prod_id.
+
+  endmethod.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Protected Method ZCL_ZODATA_AO_DPC_EXT->PRODUCTSET_GET_ENTITY
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IV_ENTITY_NAME                 TYPE        STRING
+* | [--->] IV_ENTITY_SET_NAME             TYPE        STRING
+* | [--->] IV_SOURCE_NAME                 TYPE        STRING
+* | [--->] IT_KEY_TAB                     TYPE        /IWBEP/T_MGW_NAME_VALUE_PAIR
+* | [--->] IO_REQUEST_OBJECT              TYPE REF TO /IWBEP/IF_MGW_REQ_ENTITY(optional)
+* | [--->] IO_TECH_REQUEST_CONTEXT        TYPE REF TO /IWBEP/IF_MGW_REQ_ENTITY(optional)
+* | [--->] IT_NAVIGATION_PATH             TYPE        /IWBEP/T_MGW_NAVIGATION_PATH
+* | [<---] ER_ENTITY                      TYPE        ZCL_ZODATA_AO_MPC=>TS_PRODUCT
+* | [<---] ES_RESPONSE_CONTEXT            TYPE        /IWBEP/IF_MGW_APPL_SRV_RUNTIME=>TY_S_MGW_RESPONSE_ENTITY_CNTXT
+* | [!CX!] /IWBEP/CX_MGW_BUSI_EXCEPTION
+* | [!CX!] /IWBEP/CX_MGW_TECH_EXCEPTION
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  method PRODUCTSET_GET_ENTITY.
+
+    data: lv_pid type bapi_epm_product_id,
+          ls_header type bapi_epm_product_header,
+          lt_return type table of bapiret2.
+
+    READ TABLE it_key_tab INTO data(ls_key) WITH key name = 'PRODUCT_ID'.
+
+    IF sy-subrc = 0.
+      lv_pid = ls_key-value.
+
+      IF lv_pid is INITIAL.
+
+        me->mo_context->get_message_container( )->add_message(
+          EXPORTING
+            iv_msg_type               = 'E'                 " Message Type
+            iv_msg_id                 = 'ZOCT_MSG'                 " Message Class
+            iv_msg_number             = 000
+        ).
+
+        RAISE EXCEPTION TYPE /iwbep/cx_mgw_busi_exception
+          EXPORTING
+             message_container      = me->mo_context->get_message_container( )
+        .
+      ENDIF.
+
+      call function 'BAPI_EPM_PRODUCT_GET_DETAIL'
+        EXPORTING
+          product_id         = lv_pid                 " EPM: Product header data of BOR object SEPM002
+        IMPORTING
+          headerdata         = ls_header                 " EPM: Product header data of BOR object SEPM002
+        TABLES
+*          conversion_factors =                  " EPM: Product conversion factor data of BOR object SEPM002
+           return             = lt_return                 " Return Parameter
+        .
+
+      IF lt_return is NOT INITIAL.
+        me->mo_context->get_message_container( )->add_messages_from_bapi(
+          EXPORTING
+            it_bapi_messages          = lt_return                 " Return parameter table
+        ).
+
+        RAISE EXCEPTION TYPE /iwbep/cx_mgw_busi_exception
+          EXPORTING
+             message_container      = me->mo_context->get_message_container( )
+        .
+      ENDIF.
+    ENDIF.
+
+    MOVE-CORRESPONDING ls_header to er_entity.
+
+
+  endmethod.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Protected Method ZCL_ZODATA_AO_DPC_EXT->PRODUCTSET_GET_ENTITYSET
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IV_ENTITY_NAME                 TYPE        STRING
+* | [--->] IV_ENTITY_SET_NAME             TYPE        STRING
+* | [--->] IV_SOURCE_NAME                 TYPE        STRING
+* | [--->] IT_FILTER_SELECT_OPTIONS       TYPE        /IWBEP/T_MGW_SELECT_OPTION
+* | [--->] IS_PAGING                      TYPE        /IWBEP/S_MGW_PAGING
+* | [--->] IT_KEY_TAB                     TYPE        /IWBEP/T_MGW_NAME_VALUE_PAIR
+* | [--->] IT_NAVIGATION_PATH             TYPE        /IWBEP/T_MGW_NAVIGATION_PATH
+* | [--->] IT_ORDER                       TYPE        /IWBEP/T_MGW_SORTING_ORDER
+* | [--->] IV_FILTER_STRING               TYPE        STRING
+* | [--->] IV_SEARCH_STRING               TYPE        STRING
+* | [--->] IO_TECH_REQUEST_CONTEXT        TYPE REF TO /IWBEP/IF_MGW_REQ_ENTITYSET(optional)
+* | [<---] ET_ENTITYSET                   TYPE        ZCL_ZODATA_AO_MPC=>TT_PRODUCT
+* | [<---] ES_RESPONSE_CONTEXT            TYPE        /IWBEP/IF_MGW_APPL_SRV_RUNTIME=>TY_S_MGW_RESPONSE_CONTEXT
+* | [!CX!] /IWBEP/CX_MGW_BUSI_EXCEPTION
+* | [!CX!] /IWBEP/CX_MGW_TECH_EXCEPTION
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD productset_get_entityset.
+
+    DATA: lt_header  TYPE TABLE OF bapi_epm_product_header,
+          lv_top     TYPE i,
+          lv_skip    TYPE i,
+          lv_total   TYPE i,
+          ls_entity  TYPE zcl_zodata_ao_mpc=>ts_product,
+          ls_row     TYPE bapi_epm_max_rows,
+          lt_cat_sel TYPE TABLE OF bapi_epm_product_categ_range.
+
+
+    lv_top = is_paging-top.
+    lv_skip = is_paging-skip.
+
+    lv_total = lv_top + lv_skip.
+    ls_row-bapimaxrow = lv_total.
+
+    READ TABLE it_filter_select_options INTO DATA(ls_sel_option) WITH KEY property = 'CATEGORY'  .
+
+    LOOP AT ls_sel_option-select_options INTO DATA(ls_filters).
+
+      APPEND VALUE #( sign = ls_filters-sign
+                     option = ls_filters-option
+                     low = ls_filters-low
+                     high = ls_filters-high ) TO lt_cat_sel.
+    ENDLOOP.
+
+*    APPEND INITIAL LINE TO et_entityset.
+**Step 1: Read the data from BAPI/SELECT
+    CALL FUNCTION 'BAPI_EPM_PRODUCT_GET_LIST'
+      EXPORTING
+        max_rows           = ls_row                 " Maximum number of lines of hits
+      TABLES
+        headerdata         = lt_header                 " EPM: Product header data of BOR object SEPM002
+*       selparamproductid  =                  " EPM: BAPI range table for product ids
+*       selparamsuppliernames =                  " EPM: BAPI range table for company names
+        selparamcategories = lt_cat_sel                 " EPM: Range table for product categories
+*       return             =                  " Return Parameter
+      .
+**Step 2: Move Data from BAPI to Service Output Structure
+**Step 3: Populate the table to return data out
+    IF lv_total > 0.
+
+      LOOP AT lt_header INTO DATA(ls_header) FROM lv_skip + 1 TO lv_total.
+        MOVE-CORRESPONDING ls_header TO ls_entity.
+        APPEND ls_entity TO et_entityset.
+      ENDLOOP.
+    ELSE.
+      et_entityset = CORRESPONDING #( lt_header ).
+      "MOVE-CORRESPONDING LT_HEADER to et_entityset.
+    ENDIF.
+
+ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Protected Method ZCL_ZODATA_AO_DPC_EXT->PRODUCTSET_UPDATE_ENTITY
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IV_ENTITY_NAME                 TYPE        STRING
+* | [--->] IV_ENTITY_SET_NAME             TYPE        STRING
+* | [--->] IV_SOURCE_NAME                 TYPE        STRING
+* | [--->] IT_KEY_TAB                     TYPE        /IWBEP/T_MGW_NAME_VALUE_PAIR
+* | [--->] IO_TECH_REQUEST_CONTEXT        TYPE REF TO /IWBEP/IF_MGW_REQ_ENTITY_U(optional)
+* | [--->] IT_NAVIGATION_PATH             TYPE        /IWBEP/T_MGW_NAVIGATION_PATH
+* | [--->] IO_DATA_PROVIDER               TYPE REF TO /IWBEP/IF_MGW_ENTRY_PROVIDER(optional)
+* | [<---] ER_ENTITY                      TYPE        ZCL_ZODATA_AO_MPC=>TS_PRODUCT
+* | [!CX!] /IWBEP/CX_MGW_BUSI_EXCEPTION
+* | [!CX!] /IWBEP/CX_MGW_TECH_EXCEPTION
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  method PRODUCTSET_UPDATE_ENTITY.
+
+
+   data: ls_entity TYPE zcl_z_first_mpc=>TS_PRODUCT,
+          lv_prod_id type bapi_epm_product_id,
+          ls_header TYPE bapi_epm_product_header,
+          lt_return type TABLE OF bapiret2,
+          ls_header_X type bapi_epm_product_headerx.
+
+    "Step 1: Get the key of the record to be update
+    read TABLE it_key_tab INTO data(ls_key) INDEX 1.
+
+    lv_prod_id = ls_key-value.
+
+    "Step 2: Read rest of the payload with updated data
+    io_data_provider->read_entry_data(
+      IMPORTING
+        es_data = ls_entity
+    ).
+
+    MOVE-CORRESPONDING ls_entity to ls_header.
+    "Step 3: Preprocessing - safeguard = Guardians of galaxy
+    ls_header_x-product_id = lv_prod_id.
+    ls_header_X-name = abap_true.
+    ls_header_X-description = abap_true.
+    ls_header_X-price = abap_true.
+    ls_header_X-currency_code = abap_true.
+    ls_header_X-supplier_id = abap_true.
+
+    "Step 4 : Call BAPI to perform update
+    CALL FUNCTION 'BAPI_EPM_PRODUCT_CHANGE'
+      EXPORTING
+        product_id                = lv_prod_id
+        HEADERDATA                = ls_header
+        HEADERDATAX               = ls_header_X
+     TABLES
+       RETURN                    = lt_return
+              .
+
+    "Step 5 : Check bapi result if all is well
+    IF lt_return is NOT INITIAL.
+      "Step 6: terminate and throw exception
+      me->mo_context->get_message_container( )->add_messages_from_bapi(
+        EXPORTING
+          it_bapi_messages          = lt_return       ).
+
+      RAISE EXCEPTION TYPE /iwbep/cx_mgw_busi_exception
+        EXPORTING
+           message_container      = me->mo_context->get_message_container( )
+      .
+    ENDIF.
+
+    "Step 7: Send data back to the response
+    MOVE-CORRESPONDING ls_entity to er_entity.
+*    update dbtable set p = val p = vl where pk = key
+
+
+  endmethod.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Protected Method ZCL_ZODATA_AO_DPC_EXT->SUPPLIERSET_CREATE_ENTITY
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IV_ENTITY_NAME                 TYPE        STRING
+* | [--->] IV_ENTITY_SET_NAME             TYPE        STRING
+* | [--->] IV_SOURCE_NAME                 TYPE        STRING
+* | [--->] IT_KEY_TAB                     TYPE        /IWBEP/T_MGW_NAME_VALUE_PAIR
+* | [--->] IO_TECH_REQUEST_CONTEXT        TYPE REF TO /IWBEP/IF_MGW_REQ_ENTITY_C(optional)
+* | [--->] IT_NAVIGATION_PATH             TYPE        /IWBEP/T_MGW_NAVIGATION_PATH
+* | [--->] IO_DATA_PROVIDER               TYPE REF TO /IWBEP/IF_MGW_ENTRY_PROVIDER(optional)
+* | [<---] ER_ENTITY                      TYPE        ZCL_ZODATA_AO_MPC=>TS_SUPPLIER
+* | [!CX!] /IWBEP/CX_MGW_BUSI_EXCEPTION
+* | [!CX!] /IWBEP/CX_MGW_TECH_EXCEPTION
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  method SUPPLIERSET_CREATE_ENTITY.
+    data: ls_entity TYPE ZCL_zodata_ao_MPC=>TS_supplier,
+           ls_header type bapi_epm_bp_header,
+           lt_ret    type TABLE OF bapiret2.
+
+*    Step 1: Read data which we receive from the screen
+      IO_DATA_PROVIDER->read_entry_data(
+        importing
+          es_data = ls_entity
+      ).
+
+
+*      catch /iwbep/cx_mgw_tech_exception. " mgw technical exception
+*    Step 2: Pass that to the BAPI to create
+      MOVE-CORRESPONDING ls_entity to ls_header.
+
+      call function 'BAPI_EPM_BP_CREATE'
+        EXPORTING
+          headerdata        =    ls_header              " EPM: Business Partner header data ( BOR SEPM004 )
+*          persist_to_db     = abap_true        " EPM: Boolean flag to be used as BAPI parameter
+*        IMPORTING
+*          businesspartnerid =                  " EPM: Business Partner ID to be used in BAPIs
+*        TABLES
+*          contactdata       =                  " EPM: Business Partner contact data ( BOR SEPM004 )
+*          return            =                  " Return Parameter
+        .
+
+
+*    Step 3: Response of data
+      MOVE-CORRESPONDING ls_header to er_entity.
+  endmethod.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Protected Method ZCL_ZODATA_AO_DPC_EXT->SUPPLIERSET_DELETE_ENTITY
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IV_ENTITY_NAME                 TYPE        STRING
+* | [--->] IV_ENTITY_SET_NAME             TYPE        STRING
+* | [--->] IV_SOURCE_NAME                 TYPE        STRING
+* | [--->] IT_KEY_TAB                     TYPE        /IWBEP/T_MGW_NAME_VALUE_PAIR
+* | [--->] IO_TECH_REQUEST_CONTEXT        TYPE REF TO /IWBEP/IF_MGW_REQ_ENTITY_D(optional)
+* | [--->] IT_NAVIGATION_PATH             TYPE        /IWBEP/T_MGW_NAVIGATION_PATH
+* | [!CX!] /IWBEP/CX_MGW_BUSI_EXCEPTION
+* | [!CX!] /IWBEP/CX_MGW_TECH_EXCEPTION
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  method SUPPLIERSET_DELETE_ENTITY.
+     data: lv_prod_id TYPE bapi_epm_bp_id.
+
+    READ TABLE it_key_tab INTO data(ls_key) INDEX 1.
+    lv_prod_id = ls_key-value.
+
+    CALL FUNCTION 'BAPI_EPM_BP_DELETE'
+      EXPORTING
+        bp_id         =  lv_prod_id                " EPM: Business Partner ID to be used in BAPIs
+*        persist_to_db = abap_true        " EPM: Boolean flag to be used as BAPI parameter
+*      TABLES
+*        return        =                  " Return Parameter
+      .
+  endmethod.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Protected Method ZCL_ZODATA_AO_DPC_EXT->SUPPLIERSET_GET_ENTITY
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IV_ENTITY_NAME                 TYPE        STRING
+* | [--->] IV_ENTITY_SET_NAME             TYPE        STRING
+* | [--->] IV_SOURCE_NAME                 TYPE        STRING
+* | [--->] IT_KEY_TAB                     TYPE        /IWBEP/T_MGW_NAME_VALUE_PAIR
+* | [--->] IO_REQUEST_OBJECT              TYPE REF TO /IWBEP/IF_MGW_REQ_ENTITY(optional)
+* | [--->] IO_TECH_REQUEST_CONTEXT        TYPE REF TO /IWBEP/IF_MGW_REQ_ENTITY(optional)
+* | [--->] IT_NAVIGATION_PATH             TYPE        /IWBEP/T_MGW_NAVIGATION_PATH
+* | [<---] ER_ENTITY                      TYPE        ZCL_ZODATA_AO_MPC=>TS_SUPPLIER
+* | [<---] ES_RESPONSE_CONTEXT            TYPE        /IWBEP/IF_MGW_APPL_SRV_RUNTIME=>TY_S_MGW_RESPONSE_ENTITY_CNTXT
+* | [!CX!] /IWBEP/CX_MGW_BUSI_EXCEPTION
+* | [!CX!] /IWBEP/CX_MGW_TECH_EXCEPTION
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  method SUPPLIERSET_GET_ENTITY.
+
+
+    DATA: lv_bp_id    TYPE bapi_epm_bp_id,
+          ls_header   TYPE bapi_epm_bp_header,
+          lt_return   TYPE TABLE OF bapiret2,
+          ls_prod_hdr TYPE bapi_epm_product_header,
+          lv_prod_id  TYPE bapi_epm_product_id.
+
+    "Step 1: We need to know what is the product key passed by user
+    READ TABLE it_key_tab INTO DATA(ls_key) WITH KEY name = 'BP_ID'.
+    IF sy-subrc <> 0.
+      "BECAUSE OF ASSOCIATION, WE GET PRODUCT ID ONLY
+      READ TABLE it_key_tab INTO ls_key WITH KEY name = 'PRODUCT_ID'.
+
+      lv_prod_id = ls_key-value.
+
+      CALL FUNCTION 'BAPI_EPM_PRODUCT_GET_DETAIL'
+        EXPORTING
+          product_id = lv_prod_id                 " EPM: Product header data of BOR object SEPM002
+        IMPORTING
+          headerdata = ls_prod_hdr                 " EPM: Product header data of BOR object SEPM002
+*        TABLES
+*         conversion_factors =                  " EPM: Product conversion factor data of BOR object SEPM002
+*         return     =                  " Return Parameter
+        .
+      lv_bp_id = ls_prod_hdr-supplier_id.
+    ELSE.
+      lv_bp_id = ls_key-value.
+    ENDIF.
+
+
+    "Step 2: Read data from BAPI
+    IF sy-subrc = 0.
+      IF lv_bp_id  IS INITIAL.
+        "Extra logic - handle exceptions
+        RAISE EXCEPTION TYPE /iwbep/cx_mgw_busi_exception
+          EXPORTING
+            message_unlimited = 'Dude blank BP id is not allowed'.
+      ENDIF.
+
+      CALL FUNCTION 'BAPI_EPM_BP_GET_DETAIL'
+        EXPORTING
+          bp_id      = lv_bp_id                 " EPM: Business Partner ID to be used in BAPIs
+        IMPORTING
+          headerdata = ls_header                 " EPM: Business Partner header data ( BOR SEPM004 )
+*        TABLES
+*         contactdata =                  " EPM: Business Partner contact data ( BOR SEPM004 )
+*         return     =                  " Return Parameter
+        .
+
+      IF lt_return IS NOT INITIAL.
+
+        me->mo_context->get_message_container( )->add_messages_from_bapi(
+          EXPORTING
+            it_bapi_messages          = lt_return         ).
+
+        RAISE EXCEPTION TYPE /iwbep/cx_mgw_busi_exception
+          EXPORTING
+            message_container = me->mo_context->get_message_container( ).
+
+      ENDIF.
+    ENDIF.
+
+    "Step 3: Map Data to output strecuture from BAPI Result
+    MOVE-CORRESPONDING ls_header TO er_entity.
+
+  endmethod.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Protected Method ZCL_ZODATA_AO_DPC_EXT->SUPPLIERSET_GET_ENTITYSET
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IV_ENTITY_NAME                 TYPE        STRING
+* | [--->] IV_ENTITY_SET_NAME             TYPE        STRING
+* | [--->] IV_SOURCE_NAME                 TYPE        STRING
+* | [--->] IT_FILTER_SELECT_OPTIONS       TYPE        /IWBEP/T_MGW_SELECT_OPTION
+* | [--->] IS_PAGING                      TYPE        /IWBEP/S_MGW_PAGING
+* | [--->] IT_KEY_TAB                     TYPE        /IWBEP/T_MGW_NAME_VALUE_PAIR
+* | [--->] IT_NAVIGATION_PATH             TYPE        /IWBEP/T_MGW_NAVIGATION_PATH
+* | [--->] IT_ORDER                       TYPE        /IWBEP/T_MGW_SORTING_ORDER
+* | [--->] IV_FILTER_STRING               TYPE        STRING
+* | [--->] IV_SEARCH_STRING               TYPE        STRING
+* | [--->] IO_TECH_REQUEST_CONTEXT        TYPE REF TO /IWBEP/IF_MGW_REQ_ENTITYSET(optional)
+* | [<---] ET_ENTITYSET                   TYPE        ZCL_ZODATA_AO_MPC=>TT_SUPPLIER
+* | [<---] ES_RESPONSE_CONTEXT            TYPE        /IWBEP/IF_MGW_APPL_SRV_RUNTIME=>TY_S_MGW_RESPONSE_CONTEXT
+* | [!CX!] /IWBEP/CX_MGW_BUSI_EXCEPTION
+* | [!CX!] /IWBEP/CX_MGW_TECH_EXCEPTION
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  method SUPPLIERSET_GET_ENTITYSET.
+
+    "Step 1: Read all product data from BAPI
+    data : lt_headerdata type table of bapi_epm_BP_header,
+          lv_top type i,
+          lv_skip type i,
+          lv_total type i,
+          ls_entity type zcl_zodata_ao_mpc=>ts_supplier,
+          lt_bapi_cat_filter type TABLE OF bapi_epm_company_name_range,
+          ls_max_row type bapi_epm_max_rows.
+
+    ""HOW TO KNOW WHAT IS OUR USER PASSING IN TOP AND SKIP?
+    lv_top = is_paging-top.
+    lv_skip = is_paging-skip.
+    lv_total =  lv_top + lv_skip.
+
+    ls_max_row-bapimaxrow = lv_total.
+
+    READ TABLE it_filter_select_options INTO data(ls_filter_sel) with key property = 'COMPANY_NAME'.
+    IF ls_filter_sel is NOT INITIAL.
+      lt_bapi_cat_filter = value #( for line in ls_filter_sel-select_options (
+                                          sign = line-sign
+                                          option = line-option
+                                          high = line-high
+                                          low = line-low
+                                  ) ).
+    ENDIF.
+
+    call FUNCTION 'BAPI_EPM_BP_GET_LIST'
+       EXPORTING
+         max_rows            = ls_max_row                 " EPM: Max row specifictation
+       TABLES
+*        selparambpid        =                  " EPM: Range for Business Partner IDs
+         selparamcompanyname = lt_bapi_cat_filter                 " EPM: Range for Company name
+         bpheaderdata        = lt_headerdata                 " EPM: Business Partner header data ( BOR SEPM004 )
+*        bpcontactdata       =                  " EPM: Business Partner contact data ( BOR SEPM004 )
+*        return              =                  " Return Parameter
+      .
+
+    IF lv_total is NOT INITIAL.
+      ""Logic to support SKIP
+      LOOP AT lt_headerdata INTO data(ls_headerdata) from lv_skip + 1 to lv_total.
+        MOVE-CORRESPONDING ls_headerdata to ls_entity.
+        append ls_entity to et_entityset.
+      ENDLOOP.
+    else.
+      "Step 2: Map the data from BAPI to output table
+      MOVE-CORRESPONDING lt_headerdata to et_entityset.
+    ENDIF.
+
+
+  endmethod.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Protected Method ZCL_ZODATA_AO_DPC_EXT->SUPPLIERSET_UPDATE_ENTITY
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IV_ENTITY_NAME                 TYPE        STRING
+* | [--->] IV_ENTITY_SET_NAME             TYPE        STRING
+* | [--->] IV_SOURCE_NAME                 TYPE        STRING
+* | [--->] IT_KEY_TAB                     TYPE        /IWBEP/T_MGW_NAME_VALUE_PAIR
+* | [--->] IO_TECH_REQUEST_CONTEXT        TYPE REF TO /IWBEP/IF_MGW_REQ_ENTITY_U(optional)
+* | [--->] IT_NAVIGATION_PATH             TYPE        /IWBEP/T_MGW_NAVIGATION_PATH
+* | [--->] IO_DATA_PROVIDER               TYPE REF TO /IWBEP/IF_MGW_ENTRY_PROVIDER(optional)
+* | [<---] ER_ENTITY                      TYPE        ZCL_ZODATA_AO_MPC=>TS_SUPPLIER
+* | [!CX!] /IWBEP/CX_MGW_BUSI_EXCEPTION
+* | [!CX!] /IWBEP/CX_MGW_TECH_EXCEPTION
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  method SUPPLIERSET_UPDATE_ENTITY.
+
+
+
+   data: ls_entity TYPE zcl_z_first_mpc=>TS_supplier,
+          lv_bpid type bapi_epm_bp_id,
+          ls_header TYPE bapi_epm_bp_header,
+          lt_return type TABLE OF bapiret2,
+          ls_header_X type bapi_epm_bp_headerx.
+
+    "Step 1: Get the key of the record to be update
+    read TABLE it_key_tab INTO data(ls_key) INDEX 1.
+
+    lv_bpid = ls_key-value.
+
+    "Step 2: Read rest of the payload with updated data
+    io_data_provider->read_entry_data(
+      IMPORTING
+        es_data = ls_entity
+    ).
+
+    MOVE-CORRESPONDING ls_entity to ls_header.
+    "Step 3: Preprocessing - safeguard = Guardians of galaxy
+    ls_header_x-bp_id = lv_bpid.
+    ls_header_X-bp_role = abap_true.
+    ls_header_X-city = abap_true.
+    ls_header_X-company_name = abap_true.
+    ls_header_X-country = abap_true.
+
+    "Step 4 : Call BAPI to perform update
+    CALL FUNCTION 'BAPI_EPM_PRODUCT_CHANGE'
+      EXPORTING
+        product_id                = lv_bpid
+        HEADERDATA                = ls_header
+        HEADERDATAX               = ls_header_X
+     TABLES
+       RETURN                    = lt_return
+              .
+
+    "Step 5 : Check bapi result if all is well
+    IF lt_return is NOT INITIAL.
+      "Step 6: terminate and throw exception
+      me->mo_context->get_message_container( )->add_messages_from_bapi(
+        EXPORTING
+          it_bapi_messages          = lt_return       ).
+
+      RAISE EXCEPTION TYPE /iwbep/cx_mgw_busi_exception
+        EXPORTING
+           message_container      = me->mo_context->get_message_container( )
+      .
+    ENDIF.
+
+    "Step 7: Send data back to the response
+    MOVE-CORRESPONDING ls_entity to er_entity.
+*    update dbtable set p = val p = vl where pk = key
+
+
+
+  endmethod.
+ENDCLASS.
