@@ -1,0 +1,61 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form"
+          xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
+          controllerName="emc.fin.ar.controller.Add">
+    <Page title="View 2" showNavButton="true" navButtonPress="onBack" >
+        <f:SimpleForm id="SimpleFormChange354"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			title="Add New Product"
+			labelSpanXL="3"
+			labelSpanL="3"
+			labelSpanM="3"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="4"
+			emptySpanL="4"
+			emptySpanM="4"
+			emptySpanS="0"
+			columnsXL="1"
+			columnsL="1"
+			columnsM="1"
+			singleContainerFullSize="false" >
+			<f:content>
+				<Label text="ID" />
+				<Input id="name" value="{data>/productData/PRODUCT_ID}" change="onEnter"/>
+                <Button tooltip="Load Most Expensive" icon="sap-icon://money-bills" press="onLoad" />
+				<Label text="Name" />
+				<Input value="{data>/productData/NAME}">
+				</Input>
+                <Label text="Description" />
+				<Input value="{data>/productData/DESCRIPTION}">
+					<layoutData>
+						<l:GridData span="XL1 L2 M2 S4" />
+					</layoutData>
+				</Input>
+				<Label text="Supplier ID" />
+				<Input value="{data>/productData/SUPPLIER_ID}" showValueHelp="true"
+                    valueHelpRequest="onSupplierF4"
+                >
+					<layoutData>
+						<l:GridData span="XL1 L2 M2 S4" />
+					</layoutData>
+				</Input>
+				<Label text="Price/Currency" />
+				<Input value="{data>/productData/PRICE}">
+				</Input>
+				<Input value="{data>/productData/CURRENCY_CODE}">
+					<layoutData>
+						<l:GridData span="XL1 L2 M2 S4" />
+					</layoutData>
+				</Input>
+			</f:content>
+		</f:SimpleForm>
+        <footer>
+            <Toolbar>
+                <ToolbarSpacer/>
+                <Button text="Save" type="Accept" icon="sap-icon://save" press="onSave" />
+                <Button text="Delete" type="Reject" icon="sap-icon://cancel" press="onDelete" />
+            </Toolbar>
+        </footer>
+    </Page>
+</mvc:View>
