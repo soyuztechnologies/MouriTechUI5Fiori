@@ -16,6 +16,14 @@ CALL FUNCTION 'CONVERSION_EXIT_ALPHA_INPUT'
  IMPORTING
    output        = lv_so_id.
 
-* Get the data from the table
-SELECT SINGLE * FROM snwd_so INTO CORRESPONDING FIELDS OF er_entity WHERE so_id = lv_so_id.
+*     Get the data from the table
+    SELECT SINGLE * FROM snwd_so into @data(ls_so) WHERE so_id = @lv_so_id.
+
+
+    MOVE-CORRESPONDING ls_so to er_entity.
+    er_entity-buyer_id = ls_so-buyer_guid.
+
+    select single bp_id, company_name into (@er_entity-buyer_id, @er_entity-buyer_name)
+       from snwd_bpa where node_key = @ls_so-buyer_guid.
+
   endmethod.
