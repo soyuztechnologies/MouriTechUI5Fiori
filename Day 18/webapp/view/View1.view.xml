@@ -1,0 +1,68 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+          controllerName="emc.fin.ar.controller.View1">
+    <Page title="View 1">
+        <headerContent>
+            <Button icon="sap-icon://action" press="onNext" />
+        </headerContent>
+        <content>
+            <!-- <Button press="onNext" text="Go to Next" /> -->
+            <SearchField id="idSearch" search="onSearch" liveChange="onSearch"></SearchField>
+            <List id="idList" mode="SingleSelectMaster" selectionChange="onSelectionChange" delete="onDelete" 
+            items="{path: '/ProductSet'}" growing="true" growingThreshold="10">
+            <!-- ,
+                sorter: {
+                    path : 'type',
+                    group: true
+                } -->
+                <headerToolbar>
+                    <Toolbar> 
+                        <ToolbarSpacer></ToolbarSpacer>
+                        <Button icon="sap-icon://delete" press="onDeleteData"></Button>
+                        <Button icon="sap-icon://arrow-left" press="onNavToNext"></Button>
+                    </Toolbar>
+                </headerToolbar>
+                <items>
+                    <ObjectListItem intro="{CATEGORY}" title="{NAME}" icon="" 
+                                    number="{PRICE}" numberUnit="{CURRENCY_CODE}">
+                        <firstStatus>
+                            <ObjectStatus text="{SUPPLIER_NAME}" state="Success"></ObjectStatus>
+                        </firstStatus>
+                    </ObjectListItem>
+                    <!-- <DisplayListItem value="Best antibiotic by mother earth" label="Apple"></DisplayListItem>
+                    <StandardListItem description="Source of potasium, restore lactic acid" 
+                    title="Banana" icon="sap-icon://product"></StandardListItem>
+                    <InputListItem>
+                        <HBox>
+                            <Text text="Why Pineapple?" />
+                            <Input />
+                        </HBox>
+                    </InputListItem>
+                    <CustomListItem>
+                        <Text text="Do you want CoD" />
+                        <Switch />
+                    </CustomListItem>
+                    <ObjectListItem title="50000032" intro="Sales order for IBM"
+                                    number="5800" numberUnit="EUR" icon="sap-icon://home">
+                        <firstStatus>
+                            <ObjectStatus text="Approved" state="Success"></ObjectStatus>
+                        </firstStatus>
+                        <attributes>
+                            <ObjectAttribute title="Sold To Party" text="1413"></ObjectAttribute>
+                            <ObjectAttribute title="Ship To Party" text="1510"></ObjectAttribute>
+                        </attributes>
+                    </ObjectListItem>
+                    <FeedListItem text="Hey Anubhav! Wats up" sender="Jeo Biden" icon="https://www.marketplace.org/wp-content/uploads/2020/11/Joe-Biden.jpg?w=600"
+                                  timestamp="Jan 3rd 2021"  
+                    ></FeedListItem>
+                    <ActionListItem text="Order Now!!!" press="onOrder"></ActionListItem> -->
+                </items>
+            </List>
+        </content>
+        <footer>
+            <Toolbar >
+                <ToolbarSpacer ></ToolbarSpacer>
+                <Button icon="sap-icon://add" press="onAdd" text="Add New" />
+            </Toolbar>
+        </footer>
+    </Page>
+</mvc:View>
